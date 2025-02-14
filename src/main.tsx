@@ -1,9 +1,9 @@
+import React from "react";
 import { createRoot } from "react-dom/client";
-import { Test, Test2 } from "./lib/index.tsx";
+import { Tooltip } from "dist";
 
 createRoot(document.getElementById("root")!).render(
   <>
-    <Test />
-    <Test2 />
+    <Tooltip content={"hi"} bubbleContent={"hello"} />
   </>,
 );

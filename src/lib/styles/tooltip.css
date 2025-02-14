@@ -1,0 +1,433 @@
+.speech-bubble {
+  position: absolute;
+  display: inline-block;
+  padding: 6px 8px;
+  background-color: rgb(49, 49, 49);
+  background-clip: padding-box;
+  border: 10px solid transparent;
+  border-radius: 18px;
+  color: rgb(255, 255, 255);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 17.71px;
+  pointer-events: none;
+  word-wrap: break-word;
+  z-index: 1049;
+}
+.speech-bubble:hover {
+  opacity: 1;
+}
+
+.speech-bubble::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: inherit;
+  box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.1);
+  border-radius: inherit;
+  z-index: -1;
+}
+
+.speech-bubble--small {
+  width: 60px;
+}
+
+.speech-bubble--medium {
+  width: 200px;
+}
+
+.speech-bubble--large {
+  width: 400px;
+}
+
+.speech-bubble--extraLarge {
+  width: 600px;
+}
+
+.speech-bubble--top:after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+  border-top: 12px solid rgb(49, 49, 49);
+  transform: translateX(-50%);
+}
+
+.speech-bubble--bottom:after {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  border-bottom: 12px solid rgb(49, 49, 49);
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+  transform: translateX(-50%);
+}
+
+.speech-bubble--left:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -6px;
+  border-left: 12px solid rgb(49, 49, 49);
+  border-top: 9px solid transparent;
+  border-bottom: 9px solid transparent;
+  transform: translateY(-50%);
+}
+
+.speech-bubble--right:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -6px;
+  border-right: 12px solid rgb(49, 49, 49);
+  border-top: 9px solid transparent;
+  border-bottom: 9px solid transparent;
+  transform: translateY(-50%);
+}
+
+.speech-bubble--left-top:after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  right: 10%;
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+  border-top: 12px solid rgb(49, 49, 49);
+  transform: translateY(-50%);
+}
+
+.speech-bubble--right-top:after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 10%;
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+  border-top: 12px solid rgb(49, 49, 49);
+  transform: translateY(-50%);
+}
+
+.speech-bubble--left-bottom:after {
+  content: "";
+  position: absolute;
+  top: 0%;
+  right: 10%;
+  border-bottom: 12px solid rgb(49, 49, 49);
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+  transform: translateY(-50%);
+}
+
+.speech-bubble--right-bottom:after {
+  content: "";
+  position: absolute;
+  top: 0%;
+  left: 10%;
+  border-bottom: 12px solid rgb(49, 49, 49);
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+  transform: translateY(-50%);
+}
+
+.speech-bubble--text--orange {
+  color: orange;
+}
+
+.speech-bubble--text--red {
+  color: red;
+}
+
+.speech-bubble--text--lime {
+  color: lime;
+}
+
+.speech-bubble--text--green {
+  color: green;
+}
+
+.speech-bubble--text--blue {
+  color: blue;
+}
+
+.speech-bubble--text--purple {
+  color: purple;
+}
+
+.speech-bubble--text--violet {
+  color: violet;
+}
+
+.speech-bubble--text--pink {
+  color: pink;
+}
+
+.speech-bubble--text--yellow {
+  color: yellow;
+}
+
+.speech-bubble--background--orange {
+  background-color: orange;
+}
+.speech-bubble--background--orange.speech-bubble--top:after {
+  content: "";
+  border-top: 12px solid orange;
+}
+.speech-bubble--background--orange.speech-bubble--bottom:after {
+  border-bottom: 12px solid orange;
+}
+.speech-bubble--background--orange.speech-bubble--left:after {
+  border-left: 12px solid orange;
+}
+.speech-bubble--background--orange.speech-bubble--right:after {
+  border-right: 12px solid orange;
+}
+.speech-bubble--background--orange.speech-bubble--left-top:after {
+  border-top: 12px solid orange;
+}
+.speech-bubble--background--orange.speech-bubble--right-top:after {
+  border-top: 12px solid orange;
+}
+.speech-bubble--background--orange.speech-bubble--left-bottom:after {
+  border-bottom: 12px solid orange;
+}
+.speech-bubble--background--orange.speech-bubble--right-bottom:after {
+  border-bottom: 12px solid orange;
+}
+
+.speech-bubble--background--red {
+  background-color: red;
+}
+.speech-bubble--background--red.speech-bubble--top:after {
+  content: "";
+  border-top: 12px solid red;
+}
+.speech-bubble--background--red.speech-bubble--bottom:after {
+  border-bottom: 12px solid red;
+}
+.speech-bubble--background--red.speech-bubble--left:after {
+  border-left: 12px solid red;
+}
+.speech-bubble--background--red.speech-bubble--right:after {
+  border-right: 12px solid red;
+}
+.speech-bubble--background--red.speech-bubble--left-top:after {
+  border-top: 12px solid red;
+}
+.speech-bubble--background--red.speech-bubble--right-top:after {
+  border-top: 12px solid red;
+}
+.speech-bubble--background--red.speech-bubble--left-bottom:after {
+  border-bottom: 12px solid red;
+}
+.speech-bubble--background--red.speech-bubble--right-bottom:after {
+  border-bottom: 12px solid red;
+}
+
+.speech-bubble--background--lime {
+  background-color: lime;
+}
+.speech-bubble--background--lime.speech-bubble--top:after {
+  content: "";
+  border-top: 12px solid lime;
+}
+.speech-bubble--background--lime.speech-bubble--bottom:after {
+  border-bottom: 12px solid lime;
+}
+.speech-bubble--background--lime.speech-bubble--left:after {
+  border-left: 12px solid lime;
+}
+.speech-bubble--background--lime.speech-bubble--right:after {
+  border-right: 12px solid lime;
+}
+.speech-bubble--background--lime.speech-bubble--left-top:after {
+  border-top: 12px solid lime;
+}
+.speech-bubble--background--lime.speech-bubble--right-top:after {
+  border-top: 12px solid lime;
+}
+.speech-bubble--background--lime.speech-bubble--left-bottom:after {
+  border-bottom: 12px solid lime;
+}
+.speech-bubble--background--lime.speech-bubble--right-bottom:after {
+  border-bottom: 12px solid lime;
+}
+
+.speech-bubble--background--green {
+  background-color: green;
+}
+.speech-bubble--background--green.speech-bubble--top:after {
+  content: "";
+  border-top: 12px solid green;
+}
+.speech-bubble--background--green.speech-bubble--bottom:after {
+  border-bottom: 12px solid green;
+}
+.speech-bubble--background--green.speech-bubble--left:after {
+  border-left: 12px solid green;
+}
+.speech-bubble--background--green.speech-bubble--right:after {
+  border-right: 12px solid green;
+}
+.speech-bubble--background--green.speech-bubble--left-top:after {
+  border-top: 12px solid green;
+}
+.speech-bubble--background--green.speech-bubble--right-top:after {
+  border-top: 12px solid green;
+}
+.speech-bubble--background--green.speech-bubble--left-bottom:after {
+  border-bottom: 12px solid green;
+}
+.speech-bubble--background--green.speech-bubble--right-bottom:after {
+  border-bottom: 12px solid green;
+}
+
+.speech-bubble--background--blue {
+  background-color: blue;
+}
+.speech-bubble--background--blue.speech-bubble--top:after {
+  content: "";
+  border-top: 12px solid blue;
+}
+.speech-bubble--background--blue.speech-bubble--bottom:after {
+  border-bottom: 12px solid blue;
+}
+.speech-bubble--background--blue.speech-bubble--left:after {
+  border-left: 12px solid blue;
+}
+.speech-bubble--background--blue.speech-bubble--right:after {
+  border-right: 12px solid blue;
+}
+.speech-bubble--background--blue.speech-bubble--left-top:after {
+  border-top: 12px solid blue;
+}
+.speech-bubble--background--blue.speech-bubble--right-top:after {
+  border-top: 12px solid blue;
+}
+.speech-bubble--background--blue.speech-bubble--left-bottom:after {
+  border-bottom: 12px solid blue;
+}
+.speech-bubble--background--blue.speech-bubble--right-bottom:after {
+  border-bottom: 12px solid blue;
+}
+
+.speech-bubble--background--purple {
+  background-color: purple;
+}
+.speech-bubble--background--purple.speech-bubble--top:after {
+  content: "";
+  border-top: 12px solid purple;
+}
+.speech-bubble--background--purple.speech-bubble--bottom:after {
+  border-bottom: 12px solid purple;
+}
+.speech-bubble--background--purple.speech-bubble--left:after {
+  border-left: 12px solid purple;
+}
+.speech-bubble--background--purple.speech-bubble--right:after {
+  border-right: 12px solid purple;
+}
+.speech-bubble--background--purple.speech-bubble--left-top:after {
+  border-top: 12px solid purple;
+}
+.speech-bubble--background--purple.speech-bubble--right-top:after {
+  border-top: 12px solid purple;
+}
+.speech-bubble--background--purple.speech-bubble--left-bottom:after {
+  border-bottom: 12px solid purple;
+}
+.speech-bubble--background--purple.speech-bubble--right-bottom:after {
+  border-bottom: 12px solid purple;
+}
+
+.speech-bubble--background--violet {
+  background-color: violet;
+}
+.speech-bubble--background--violet.speech-bubble--top:after {
+  content: "";
+  border-top: 12px solid violet;
+}
+.speech-bubble--background--violet.speech-bubble--bottom:after {
+  border-bottom: 12px solid violet;
+}
+.speech-bubble--background--violet.speech-bubble--left:after {
+  border-left: 12px solid violet;
+}
+.speech-bubble--background--violet.speech-bubble--right:after {
+  border-right: 12px solid violet;
+}
+.speech-bubble--background--violet.speech-bubble--left-top:after {
+  border-top: 12px solid violet;
+}
+.speech-bubble--background--violet.speech-bubble--right-top:after {
+  border-top: 12px solid violet;
+}
+.speech-bubble--background--violet.speech-bubble--left-bottom:after {
+  border-bottom: 12px solid violet;
+}
+.speech-bubble--background--violet.speech-bubble--right-bottom:after {
+  border-bottom: 12px solid violet;
+}
+
+.speech-bubble--background--pink {
+  background-color: pink;
+}
+.speech-bubble--background--pink.speech-bubble--top:after {
+  content: "";
+  border-top: 12px solid pink;
+}
+.speech-bubble--background--pink.speech-bubble--bottom:after {
+  border-bottom: 12px solid pink;
+}
+.speech-bubble--background--pink.speech-bubble--left:after {
+  border-left: 12px solid pink;
+}
+.speech-bubble--background--pink.speech-bubble--right:after {
+  border-right: 12px solid pink;
+}
+.speech-bubble--background--pink.speech-bubble--left-top:after {
+  border-top: 12px solid pink;
+}
+.speech-bubble--background--pink.speech-bubble--right-top:after {
+  border-top: 12px solid pink;
+}
+.speech-bubble--background--pink.speech-bubble--left-bottom:after {
+  border-bottom: 12px solid pink;
+}
+.speech-bubble--background--pink.speech-bubble--right-bottom:after {
+  border-bottom: 12px solid pink;
+}
+
+.speech-bubble--background--yellow {
+  background-color: yellow;
+}
+.speech-bubble--background--yellow.speech-bubble--top:after {
+  content: "";
+  border-top: 12px solid yellow;
+}
+.speech-bubble--background--yellow.speech-bubble--bottom:after {
+  border-bottom: 12px solid yellow;
+}
+.speech-bubble--background--yellow.speech-bubble--left:after {
+  border-left: 12px solid yellow;
+}
+.speech-bubble--background--yellow.speech-bubble--right:after {
+  border-right: 12px solid yellow;
+}
+.speech-bubble--background--yellow.speech-bubble--left-top:after {
+  border-top: 12px solid yellow;
+}
+.speech-bubble--background--yellow.speech-bubble--right-top:after {
+  border-top: 12px solid yellow;
+}
+.speech-bubble--background--yellow.speech-bubble--left-bottom:after {
+  border-bottom: 12px solid yellow;
+}
+.speech-bubble--background--yellow.speech-bubble--right-bottom:after {
+  border-bottom: 12px solid yellow;
+}/*# sourceMappingURL=tooltip.css.map */

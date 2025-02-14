@@ -1,0 +1,17 @@
+index.html               
+package.json             
+/src
+tsconfig.json
+tsconfig.node.json
+vite.config.ts
+
+# ESLint & Prettier 설정 제외
+eslint.config.js
+prettier.json
+.prettierrc.json
+.prettierignore
+.eslintrc
+
+# npm & Git 설정 파일 제외
+.npmignore
+.gitignore
