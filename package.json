@@ -1,6 +1,6 @@
 {
   "name": "minus-ui",
-  "version": "0.0.6",
+  "version": "0.0.1",
   "description": "minus-ui toolkit!",
   "type": "module",
   "main": "dist/index.js",
@@ -17,9 +17,10 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "retry": "pnpm uninstall dist && rm ../dist"
   },
   "dependencies": {
     "react": "^18.3.1",

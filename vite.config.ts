@@ -5,7 +5,6 @@ import dts from "vite-plugin-dts";
 // https://vite.dev/config/
 export default defineConfig({
   build: {
-    target: "esnext",
     lib: {
       entry: path.resolve(__dirname, "src/lib/index.tsx"),
       name: "index",
@@ -22,6 +21,10 @@ export default defineConfig({
     commonjsOptions: {
       esmExternals: ["react"],
     },
+    emptyOutDir: false,
   },
-  plugins: [dts({ tsconfigPath: "./tsconfig.json" })],
+  define: {
+    "process.env": {},
+  },
+  plugins: [dts()],
 });
