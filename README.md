@@ -4,6 +4,50 @@
 
 Headless를 지향하기 위하여 `@minus-ui/styles`를 따로 분리하였으며, headless를 원하지 않는 사용자를 위해 `@minus-ui/core`를 추가하였습니다.
 
+## 📁 directory 구조
+```
+minus-ui/
+│── packages/
+│   ├── component/          # @minus-ui/component (UI Components)
+│   │   ├── src/
+│   │   │   ├── snackbar/
+│   │   │   ├── tooltip/
+│   │   │   ├── index.ts    # components entry
+│   │   ├── package.json
+│   │   ├── tsconfig.json
+│   │   ├── vite.config.ts
+│   │
+│   ├── styles/             # @minus-ui/styles (CSS, 디자인 관련)
+│   │   ├── src/
+│   │   │   ├── snackbar.css
+│   │   │   ├── tooltip.css
+│   │   │   ├── index.ts    # styles entry (각 CSS를 export)
+│   │   ├── package.json
+│   │   ├── tsconfig.json
+│   │   ├── vite.config.ts
+│   │
+│   ├── type/               # @minus-ui/type (TypeScript 타입)
+│   │   ├── src/
+│   │   │   ├── snackbarType.ts
+│   │   │   ├── tooltipType.ts
+│   │   │   ├── index.ts    # types entry
+│   │   ├── package.json
+│   │   ├── tsconfig.json
+│   │   ├── vite.config.ts
+│   │
+│   ├── core/               # @minus-ui/core (모든 것을 한 번에 import)
+│   │   ├── src/
+│   │   │   ├── index.ts    # core entry (component, styles, type을 한 번에 export)
+│   │   ├── package.json
+│   │   ├── tsconfig.json
+│   │   ├── vite.config.ts
+│
+│── package.json            # workspace 설정
+│── pnpm-workspace.yaml     # pnpm workspace 관리
+│── tsconfig.base.json      # 공통 TypeScript 설정
+
+```
+
 ## 📦 패키지 구성
 `minus-ui`는 다음과 같은 4개의 워크스페이스를 포함합니다.
 
