@@ -1,0 +1,23 @@
+{
+  "name": "@minus-ui/styles",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "dist/index.css",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+  "./snackbar": "./dist/snackbar.css",
+  "./tooltip": "./dist/tooltip.css"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite build"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

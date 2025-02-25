@@ -1,9 +1,8 @@
 import { MouseEvent, useCallback, useEffect, useRef, useState } from "react";
-import { TooltipPropsType } from "../types/tooltipType";
+import { TooltipPropsType } from "@minus-ui/types";
 import TooltipBubble from "./TooltipBubble";
-import "../styles/tooltip.css";
 
-export default function Tooltip(props: TooltipPropsType) {
+export function Tooltip(props: TooltipPropsType) {
   const {
     contents,
     bubbleContents,

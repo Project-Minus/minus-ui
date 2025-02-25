@@ -6,8 +6,7 @@ import {
   ReactNode,
   MouseEvent,
 } from "react";
-import { TooltipPositionType } from "../types/tooltipType";
-import "../styles/tooltip.css";
+import { TooltipPositionType } from "@minus-ui/types";
 
 const calcBubblePosition = (
   position:

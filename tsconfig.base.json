@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "target": "ES2015",
-    "module": "ES2015",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "target": "ESNext",
+    "module": "ESNext",
+    "lib": ["dom", "dom.iterable", "ESNext"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -10,7 +10,7 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": false,
     "noEmit": false,
@@ -18,8 +18,14 @@
     "declaration": true,
     "emitDeclarationOnly":false,
     "outDir": "dist",
-    "declarationDir": "dist/types"
+    "declarationDir": "dist/types",
+    "baseUrl": ".",
+    "paths": {
+      "@minus-ui/components": ["packages/components/src"],
+      "@minus-ui/styles": ["packages/styles/src"],
+      "@minus-ui/types": ["packages/types/src"],
+      "@minus-ui/core": ["packages/core/src"]
+    }
   },
-  "include": ["src/lib"]
 }
 

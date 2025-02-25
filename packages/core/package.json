@@ -1,0 +1,44 @@
+{
+  "name": "@minus-ui/core",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.umd.cjs"
+    },
+ "./snackbar": {
+    "import": "./dist/snackbar.css",
+    "types": "./dist/css.d.ts"
+  },
+  "./tooltip": {
+    "import": "./dist/tooltip.css",
+    "types": "./dist/css.d.ts"
+  },
+  "./index.css": {
+    "import": "./dist/index.css",
+    "types": "./dist/css.d.ts"
+  }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite build"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "dependencies": {
+    "@minus-ui/styles": "0.0.1",
+    "@minus-ui/types": "0.0.1",
+    "@minus-ui/components": "0.0.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

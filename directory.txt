@@ -1,0 +1,39 @@
+minus-check/
+│── packages/
+│   ├── component/          # @minus-ui/component (UI Components)
+│   │   ├── src/
+│   │   │   ├── snackbar/
+│   │   │   ├── tooltip/
+│   │   │   ├── index.ts    # components entry
+│   │   ├── package.json
+│   │   ├── tsconfig.json
+│   │   ├── vite.config.ts
+│   │
+│   ├── styles/             # @minus-ui/styles (CSS, 디자인 관련)
+│   │   ├── src/
+│   │   │   ├── snackbar.css
+│   │   │   ├── tooltip.css
+│   │   │   ├── index.ts    # styles entry (각 CSS를 export)
+│   │   ├── package.json
+│   │   ├── tsconfig.json
+│   │   ├── vite.config.ts
+│   │
+│   ├── type/               # @minus-ui/type (TypeScript 타입)
+│   │   ├── src/
+│   │   │   ├── snackbarType.ts
+│   │   │   ├── tooltipType.ts
+│   │   │   ├── index.ts    # types entry
+│   │   ├── package.json
+│   │   ├── tsconfig.json
+│   │   ├── vite.config.ts
+│   │
+│   ├── core/               # @minus-ui/core (모든 것을 한 번에 import)
+│   │   ├── src/
+│   │   │   ├── index.ts    # core entry (component, styles, type을 한 번에 export)
+│   │   ├── package.json
+│   │   ├── tsconfig.json
+│   │   ├── vite.config.ts
+│
+│── package.json            # workspace 설정
+│── pnpm-workspace.yaml     # pnpm workspace 관리
+│── tsconfig.base.json      # 공통 TypeScript 설정
