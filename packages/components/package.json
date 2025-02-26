@@ -1,6 +1,6 @@
 {
   "name": "@minus-ui/components",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -22,7 +22,7 @@
     "react-dom": "^18.0.0"
   },
   "dependencies": {
-    "@minus-ui/types": "0.0.1"
+    "@minus-ui/types": "0.1.0"
   },
   "publishConfig": {
     "access": "public"

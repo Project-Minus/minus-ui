@@ -32,7 +32,7 @@ export default defineConfig({
       targets: [
         // styles 패키지의 CSS 파일을 core의 dist 디렉토리로 복사
         {
-          src: "node_modules/@minus-ui/styles/dist/*.css",
+          src: "../styles/src/*.css",
           dest: "dist",
         },
         {
