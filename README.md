@@ -52,19 +52,23 @@ minus-ui/
 `minus-ui`는 다음과 같은 4개의 워크스페이스를 포함합니다.
 
 ### 1. `@minus-ui/components`
+👉[components readme 보러가기](https://github.com/Project-Minus/minus-ui/tree/develop/packages/components)
 - 다양한 UI 컴포넌트 모음입니다.
 - React 기반으로 개발되었으며, 재사용 가능한 디자인 시스템을 제공합니다.
 
 ### 2. `@minus-ui/styles`
+👉[styles readme 보러가기](https://github.com/Project-Minus/minus-ui/tree/develop/packages/styles)
 - CSS 스타일 파일 모음입니다.
 - `@minus-ui/components`와 함께 사용할 수 있도록 디자인되었습니다.
 - 개별적으로 스타일 시스템을 적용하고 싶은 경우 사용 가능합니다.
 
 ### 3. `@minus-ui/types`
+👉[types readme 보러가기](https://github.com/Project-Minus/minus-ui/tree/develop/packages/types)
 - TypeScript에서 활용할 수 있는 타입 정의 모음입니다.
 - `@minus-ui/components` 및 `@minus-ui/core`에서 사용됩니다.
 
 ### 4. `@minus-ui/core`
+👉[core readme 보러가기](https://github.com/Project-Minus/minus-ui/tree/develop/packages/core)
 - `@minus-ui/components`, `@minus-ui/styles`, `@minus-ui/types`를 하나로 묶은 패키지입니다.
 - 개별적으로 패키지를 설치할 필요 없이 한 번에 모든 기능을 사용하고 싶은 경우 사용하면 됩니다.
 

@@ -1,10 +1,17 @@
 {
   "name": "@minus-ui/core",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Project-Minus/minus-ui/tree/develop/packages/core"
+  },
+  "keywords": ["ui", "component-library", "react", "typescript"],
+  "author": "park minkyu",
+  "license": "MIT",
   "exports": {
     ".": {
       "import": "./dist/index.js",
@@ -34,9 +41,9 @@
     "react-dom": "^18.0.0"
   },
   "dependencies": {
-    "@minus-ui/styles": "0.1.0",
-    "@minus-ui/types": "0.1.0",
-    "@minus-ui/components": "0.1.0"
+    "@minus-ui/styles": "0.1.1",
+    "@minus-ui/types": "0.1.1",
+    "@minus-ui/components": "0.1.1"
   },
   "publishConfig": {
     "access": "public"
