@@ -1,6 +1,6 @@
 {
   "name": "@minus-ui/styles",
-  "version": "0.1.1",
+  "version": "0.1.3",
   "type": "module",
   "main": "dist/index.js",
   "types": "./dist/declaration.d.ts",
@@ -22,6 +22,10 @@
   },
   "./tooltip": {
     "import": "./dist/tooltip.css",
+    "types": "./dist/declaration.d.ts"
+  },
+  "./imageViewer": {
+    "import": "./dist/imageViewer.css",
     "types": "./dist/declaration.d.ts"
   },
   "./index": {

@@ -85,7 +85,7 @@ importers:
   packages/components:
     dependencies:
       '@minus-ui/types':
-        specifier: 0.1.0
+        specifier: workspace:*
         version: link:../types
       react:
         specifier: ^18.0.0
@@ -97,13 +97,13 @@ importers:
   packages/core:
     dependencies:
       '@minus-ui/components':
-        specifier: 0.1.0
+        specifier: workspace:*
         version: link:../components
       '@minus-ui/styles':
-        specifier: 0.1.0
+        specifier: workspace:*
         version: link:../styles
       '@minus-ui/types':
-        specifier: 0.1.0
+        specifier: workspace:*
         version: link:../types
       react:
         specifier: ^18.0.0

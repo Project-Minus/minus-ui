@@ -1,0 +1,59 @@
+.imageViewerWrapper {
+  perspective: 10000px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  will-change: transform;
+  animation: viewerScaleUp 0.2s 1 forwards;
+  color: var(--foreground);
+}
+.imageViewerWrapper .viewerPort {
+  position: relative;
+  width: 800px;
+  height: 650px;
+}
+.imageViewerWrapper .viewerContent {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  backface-visibility: visible;
+  transform-style: preserve-3d;
+}
+.imageViewerWrapper .viewerButtons {
+  position: relative;
+  margin-top: 20px;
+  padding: 20px;
+  background-color: rgba(15, 15, 15, 0.7);
+  box-shadow: 0px 0px 4px rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 400px;
+  font-size: 24px;
+  border-radius: 50px;
+  color: var(--foreground);
+}
+.imageViewerWrapper .viewerButtons .icon {
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+}
+
+@keyframes viewerScaleUp {
+  0% {
+    transform: scale(0.6);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
