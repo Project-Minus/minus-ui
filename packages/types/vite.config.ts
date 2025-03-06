@@ -9,6 +9,9 @@ export default defineConfig({
       name: "MiLibraryType",
       fileName: "index",
     },
+    rollupOptions: {
+      external: ["react", "react/jsx-runtime", "react-dom/client"],
+    },
     emptyOutDir: false,
   },
   plugins: [dts({ outDir: "dist", insertTypesEntry: true })],

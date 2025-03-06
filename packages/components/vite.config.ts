@@ -11,7 +11,7 @@ export default defineConfig({
       fileName: "index",
     },
     rollupOptions: {
-      external: ["react", "react-dom"],
+      external: ["react", "react-dom", "react/jsx-runtime", "react-dom/client"],
     },
     //자동으로 build output을 지움 => 이 pnp옵션을 false로 해야지 js 파일이 생겨서
     //컴포넌트 배포가 가능
