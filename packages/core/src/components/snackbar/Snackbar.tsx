@@ -66,6 +66,7 @@ export function Snackbar(props: Props) {
   function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
   }
+
   const snackbarClass = cn(
     "fixed pt-4 pb-5 px-8 flex items-center justify-center min-w-[150px] max-w-[500px] bg-inherit rounded-[250px] shadow-2xl text-inherit break-all",
     snackbarPositionClassName,
@@ -84,6 +85,50 @@ export function Snackbar(props: Props) {
         } as CSSProperties
       }
     >
+      <style>{`
+.animate-showSnackbarOnTop{
+animation:showSnackbarOnTop 0.5s forwards
+}
+@keyframes showSnackbarOnTop {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 20px);
+  }
+}
+@keyframes hideSnackbarOnTop {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, 20px);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, 0);
+  }
+}
+@keyframes showSnackbarOnBottom {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -20px);
+  }
+}
+@keyframes hideSnackbarOnBottom {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -20px);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, 0);
+  }
+}`}</style>
       {!autoClose && (
         <AiOutlineClose
           className="absolute mt-[8px] mr-[8px] top-0 right-0 text-[12px] font-bold cursor-pointer"

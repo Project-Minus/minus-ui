@@ -8,7 +8,12 @@
     "type": "git",
     "url": "https://github.com/Project-Minus/minus-ui"
   },
-  "keywords": ["ui", "component-library", "react", "typescript"],
+  "keywords": [
+    "ui",
+    "component-library",
+    "react",
+    "typescript"
+  ],
   "author": "park minkyu",
   "license": "MIT",
   "workspaces": [
@@ -45,15 +50,15 @@
     "publish:packages": "pnpm -r publish --access public --no-git-checks"
   },
   "dependencies": {
-    "@minus-ui/core": "workspace:*",   
+     "@minus-ui/core": "workspace:*", 
     "@tailwindcss/vite": "^4.1.11",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-icons": "^5.5.0",
     "tailwind-merge": "^3.3.1",
-    "tailwindcss": "^4.1.11",
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1"
+    "tailwindcss": "^4.1.11"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",

@@ -26,5 +26,5 @@ export default defineConfig({
   define: {
     "process.env": {},
   },
-  plugins: [react(),tailwindcss()],
+  plugins: [react(), tailwindcss()],
 });
