@@ -39,7 +39,6 @@ export function Snackbar(props: Props) {
     manualClose = () => {},
     ...rest
   } = props;
-
   const [unmountClass, setUnmountClass] = useState<string>("");
   const [snackbarHeight, setSnackbarHeight] = useState<number>(0); // height 상태 추가
   const snackbarRef = useRef<HTMLDivElement>(null); // ref 추가
@@ -54,7 +53,7 @@ export function Snackbar(props: Props) {
       return;
     }
     setTimeout(() => {
-      setUnmountClass(" unmount");
+      setUnmountClass("animate-hideSnackbarOnTop");
     }, unmountMinTime);
   }, [autoClose, autoCloseTime, unmountMinTime]);
 
@@ -63,6 +62,7 @@ export function Snackbar(props: Props) {
       setSnackbarHeight(snackbarRef.current.offsetHeight); // 렌더 후 height 값을 설정
     }
   }, []);
+
   function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
   }
@@ -70,13 +70,14 @@ export function Snackbar(props: Props) {
   const snackbarClass = cn(
     "fixed pt-4 pb-5 px-8 flex items-center justify-center min-w-[150px] max-w-[500px] bg-inherit rounded-[250px] shadow-2xl text-inherit break-all",
     snackbarPositionClassName,
+    unmountClass,
     className,
   );
 
   return createPortal(
     <div
       ref={snackbarRef}
-      className={`snackbar ${snackbarPosition}${unmountClass} ${snackbarClass}`}
+      className={`snackbar ${snackbarPosition} ${snackbarClass}`}
       style={
         {
           "--snackbar-vertical": snackbarHeight * 1.5 * index,
@@ -85,55 +86,11 @@ export function Snackbar(props: Props) {
         } as CSSProperties
       }
     >
-      <style>{`
-.animate-showSnackbarOnTop{
-animation:showSnackbarOnTop 0.5s forwards
-}
-@keyframes showSnackbarOnTop {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, 0);
-  }
-  100% {
-    opacity: 1;
-    transform: translate(-50%, 20px);
-  }
-}
-@keyframes hideSnackbarOnTop {
-  0% {
-    opacity: 1;
-    transform: translate(-50%, 20px);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(-50%, 0);
-  }
-}
-@keyframes showSnackbarOnBottom {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, 0);
-  }
-  100% {
-    opacity: 1;
-    transform: translate(-50%, -20px);
-  }
-}
-@keyframes hideSnackbarOnBottom {
-  0% {
-    opacity: 1;
-    transform: translate(-50%, -20px);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(-50%, 0);
-  }
-}`}</style>
       {!autoClose && (
         <AiOutlineClose
           className="absolute mt-[8px] mr-[8px] top-0 right-0 text-[12px] font-bold cursor-pointer"
           onClick={() => {
-            setUnmountClass(" unmount");
+            setUnmountClass("animate-hideSnackbarOnTop");
             setTimeout(() => {
               manualClose(idNum);
             }, 500 * 0.65);
@@ -152,6 +109,35 @@ const getSnackbarRoot = () => {
   let container = document.getElementById("snackbar-root");
 
   // root 컨테이너 없으면 새로 생성
+  if (!document.getElementById("snackbar-style")) {
+    const style = document.createElement("style");
+    style.id = "snackbar-style";
+    style.textContent = `
+  .animate-showSnackbarOnTop {
+    animation: showSnackbarOnTop 0.5s forwards;
+  }
+  .animate-hideSnackbarOnTop {
+    animation: hideSnackbarOnTop 0.5s forwards;
+  }
+  @keyframes showSnackbarOnTop {
+    0% { opacity: 0; transform: translate(-50%, 0); }
+    100% { opacity: 1; transform: translate(-50%, 20px); }
+  }
+  @keyframes hideSnackbarOnTop {
+    0% { opacity: 1; transform: translate(-50%, 20px); }
+    100% { opacity: 0; transform: translate(-50%, 0); }
+  }
+  @keyframes showSnackbarOnBottom {
+    0% { opacity: 0; transform: translate(-50%, 0); }
+    100% { opacity: 1; transform: translate(-50%, -20px); }
+  }
+  @keyframes hideSnackbarOnBottom {
+    0% { opacity: 1; transform: translate(-50%, -20px); }
+    100% { opacity: 0; transform: translate(-50%, 0); }
+  }
+  `;
+    document.head.appendChild(style); // head에 직접 붙이기도 가능
+  }
   if (!container) {
     container = document.createElement("div");
     container.id = "snackbar-root";
@@ -225,6 +211,9 @@ Snackbar.info = async (config: SnackbarConfigType) => {
         icons={icons || <AiFillInfoCircle />}
         autoClose={autoClose}
         autoCloseTime={autoCloseTime}
+        manualClose={() => {
+          safeUnmountSnackbar();
+        }}
         {...rest}
       />,
     );

@@ -9,17 +9,23 @@
     "type": "git",
     "url": "https://github.com/Project-Minus/minus-ui/tree/develop/packages/core"
   },
-  "keywords": ["ui", "component-library", "react", "typescript"],
+  "keywords": [
+    "ui",
+    "component-library",
+    "react",
+    "typescript"
+  ],
   "author": "park minkyu",
   "license": "MIT",
   "exports": {
     ".": {
       "import": "./dist/index.js",
       "require": "./dist/index.umd.cjs"
-    },
-     "./tw-preset": { "import": "./tw-preset.cjs", "require": "./tw-preset.cjs" }
+    }
   },
-  "files": ["dist", "tw-preset.cjs"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "vite build"
   },

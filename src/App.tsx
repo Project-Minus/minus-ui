@@ -18,8 +18,8 @@ function App() {
           onClick={async () => {
             Snackbar.show({
               message: "hi",
-              autoClose: true,
-              className: "bg-white",
+              autoClose: false,
+              className: "bg-red-500",
             });
           }}
         >

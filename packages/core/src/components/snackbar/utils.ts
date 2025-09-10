@@ -33,9 +33,9 @@ export const getSnacbarPosition = (position: string) => {
   const bottom = `bottom-[calc(60px+1px*var(--snackbar-vertical)))]`;
   switch (position) {
     case "top":
-      return `${top} left-[50%] translate-x-[-50%] transition-[top] animate-showSnackbarOnTop`;
+      return `${top} left-[50%] translate-y-[-50%] transition-[top] animate-showSnackbarOnTop`;
     case "bottom":
-      return `${bottom} left-[50%] translate-x-[-50%] transition-[bottom]`;
+      return `${bottom} left-[50%] translate-y-[-50%] transition-[bottom]`;
     default:
       return `${top} left-[50%] translate-x-[-50%] transition-[top]`;
   }
