@@ -59,7 +59,6 @@
 .snackbar.left-bottom {
   left: 10%;
   bottom: calc(60px + 1px * var(--snackbar-vertical));
-  left: var(--horizontal);
   transform: translate(-50%, 0);
   transition: bottom 0.5s;
   animation: showSnackbarOnBottom 0.5s 1 forwards;
@@ -127,4 +126,4 @@
     opacity: 0;
     transform: translate(-50%, 0);
   }
-} /*# sourceMappingURL=snackbar.css.map */
+}

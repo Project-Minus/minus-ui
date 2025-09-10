@@ -1,7 +1,7 @@
 import { defineConfig } from "vite";
 import path from "path";
-import dts from "vite-plugin-dts";
-
+import react from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite";
 // https://vite.dev/config/
 export default defineConfig({
   build: {
@@ -26,5 +26,5 @@ export default defineConfig({
   define: {
     "process.env": {},
   },
-  plugins: [dts()],
+  plugins: [react(),tailwindcss()],
 });
