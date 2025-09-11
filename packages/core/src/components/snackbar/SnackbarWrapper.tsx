@@ -1,12 +1,16 @@
 import { ReactNode, useEffect, useMemo, useState } from "react";
 import { convertCloseTime } from "./utils";
-import { SNCMBAR_DEFAULT_STYLE } from "./utils";
 import { Snackbar } from "./Snackbar";
-import { SnackbarConfigType, SnackbarStatusType } from "../../types";
+import { SnackbarConfigType, SnackbarThemeType } from "../../types";
+import {
+  ROUTER_CHANGE_EVENT_WITH_SNACKBAR,
+  ROUTER_CHANGE_FLAG_WITH_SNACKBAR,
+  windowLocationBridge,
+} from "../windowBridge";
 
 interface SnackbarItem {
   id: number;
-  status: SnackbarStatusType;
+  type: SnackbarThemeType;
   message: ReactNode;
   icons: ReactNode;
 }
@@ -14,16 +18,19 @@ interface SnackbarItem {
 interface Props extends SnackbarConfigType {
   idNum: number;
 }
+
 export default function SnackbarWrapper(props: Props) {
   const {
     idNum,
-    status = "show",
+    type = "success",
     message,
     snackbarPosition = "top",
     maxCount = Infinity,
     icons = "",
     autoClose = true,
     autoCloseTime = "1s",
+    unmount = () => {},
+    root,
     ...rest
   } = props;
   const [snackbars, setSnackbars] = useState<SnackbarItem[]>([]);
@@ -35,11 +42,12 @@ export default function SnackbarWrapper(props: Props) {
   const manualClose = (idNum: number) => {
     setSnackbars((prev) => prev.filter((snack) => snack.id !== idNum));
   };
+
   useEffect(() => {
     const handleShowSnackbar = () => {
       setSnackbars((prev) => {
         if (prev.length < maxCount) {
-          return [...prev, { id: idNum, status, icons, message }];
+          return [...prev, { id: idNum, type, icons, message }];
         }
         return [...prev];
       });
@@ -51,30 +59,42 @@ export default function SnackbarWrapper(props: Props) {
       }, unmountMinTime * 1.3);
     };
     handleShowSnackbar();
-  }, [autoClose, idNum, maxCount, status, icons, message, unmountMinTime]);
+  }, [autoClose, idNum, maxCount, type, icons, message, unmountMinTime]);
+
+  useEffect(() => {
+    windowLocationBridge(
+      root ?? null,
+      ROUTER_CHANGE_EVENT_WITH_SNACKBAR,
+      ROUTER_CHANGE_FLAG_WITH_SNACKBAR,
+      unmount,
+    );
+  }, [unmount]);
+
+  if (snackbars.length < 1) {
+    return;
+  }
 
   return (
     <div>
       {snackbars.map((snackbar, index) => {
         const {
           id,
-          status,
           icons: snackbarIcon,
           message: snackbarMessage,
+          type,
         } = snackbar;
-        const getStyle = SNCMBAR_DEFAULT_STYLE[status];
         return (
           <Snackbar
             key={id}
             index={index}
             idNum={id}
+            type={type}
             icons={snackbarIcon}
             message={snackbarMessage}
             autoClose={autoClose}
             autoCloseTime={autoCloseTime}
             snackbarPosition={snackbarPosition}
             manualClose={manualClose}
-            {...getStyle}
             {...rest}
           />
         );

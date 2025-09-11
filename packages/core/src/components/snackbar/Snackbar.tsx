@@ -8,27 +8,20 @@ import {
 } from "react";
 import { createPortal } from "react-dom";
 import { createRoot, Root } from "react-dom/client";
-import {
-  AiFillInfoCircle,
-  AiFillCloseCircle,
-  AiFillWarning,
-  AiFillCheckCircle,
-  AiOutlineClose,
-} from "react-icons/ai";
-import { convertCloseTime, getSnacbarPosition } from "./utils";
-import SnackbarWrapper from "./SnackbarWrapper";
-import { SnackbarConfigType } from "../../types";
-import { ClassValue } from "clsx";
-import { twMerge } from "tailwind-merge";
-import clsx from "clsx";
 
-interface Props extends SnackbarConfigType {
-  index: number;
-  idNum: number;
-}
-export function Snackbar(props: Props) {
+import SnackbarWrapper from "./SnackbarWrapper";
+import { SnackbarConfigType, SnackbarType } from "../../types";
+import {
+  convertCloseTime,
+  getSnacbarPositionClassName,
+  getSnackbarTypeClassName,
+} from "./utils";
+import { cn } from "../utils";
+
+export function Snackbar(props: SnackbarType) {
   const {
     index,
+    type = "success",
     idNum,
     className,
     message,
@@ -40,22 +33,38 @@ export function Snackbar(props: Props) {
     ...rest
   } = props;
   const [unmountClass, setUnmountClass] = useState<string>("");
-  const [snackbarHeight, setSnackbarHeight] = useState<number>(0); // height 상태 추가
-  const snackbarRef = useRef<HTMLDivElement>(null); // ref 추가
+  const [snackbarHeight, setSnackbarHeight] = useState<number>(0);
+
+  const snackbarRef = useRef<HTMLDivElement>(null);
+
   const unmountMinTime = useMemo(() => {
     //최소값 1000ms
     return Math.max(2000, convertCloseTime(autoCloseTime));
   }, [autoCloseTime]);
+  const autoCloseClassName = autoClose ? "" : "cursor-pointer";
 
-  const snackbarPositionClassName = getSnacbarPosition(snackbarPosition);
+  const snackbarUnmountAnimateClassName = useMemo(() => {
+    return snackbarPosition.includes("top")
+      ? "animate-hideSnackbarOnTop"
+      : "animate-hideSnackbarOnBottom";
+  }, [snackbarPosition]);
+  const snackbarPositionClassName =
+    getSnacbarPositionClassName(snackbarPosition);
+  const snackbarTypeClassName = getSnackbarTypeClassName(type);
+
   useEffect(() => {
     if (!autoClose) {
       return;
     }
     setTimeout(() => {
-      setUnmountClass("animate-hideSnackbarOnTop");
+      setUnmountClass(snackbarUnmountAnimateClassName);
     }, unmountMinTime);
-  }, [autoClose, autoCloseTime, unmountMinTime]);
+  }, [
+    autoClose,
+    autoCloseTime,
+    unmountMinTime,
+    snackbarUnmountAnimateClassName,
+  ]);
 
   useLayoutEffect(() => {
     if (snackbarRef.current) {
@@ -63,12 +72,10 @@ export function Snackbar(props: Props) {
     }
   }, []);
 
-  function cn(...inputs: ClassValue[]) {
-    return twMerge(clsx(inputs));
-  }
-
   const snackbarClass = cn(
-    "fixed pt-4 pb-5 px-8 flex items-center justify-center min-w-[150px] max-w-[500px] bg-inherit rounded-[250px] shadow-2xl text-inherit break-all",
+    "fixed pt-1 pb-2 px-3 flex items-center justify-center min-w-[150px] max-w-[500px] bg-inherit shadow-2xl text-inherit break-all",
+    snackbarTypeClassName,
+    autoCloseClassName,
     snackbarPositionClassName,
     unmountClass,
     className,
@@ -77,7 +84,7 @@ export function Snackbar(props: Props) {
   return createPortal(
     <div
       ref={snackbarRef}
-      className={`snackbar ${snackbarPosition} ${snackbarClass}`}
+      className={`${snackbarClass}`}
       style={
         {
           "--snackbar-vertical": snackbarHeight * 1.5 * index,
@@ -85,18 +92,16 @@ export function Snackbar(props: Props) {
           ...rest,
         } as CSSProperties
       }
+      onClick={() => {
+        if (autoClose) {
+          return;
+        }
+        setUnmountClass(snackbarUnmountAnimateClassName);
+        setTimeout(() => {
+          manualClose(idNum);
+        }, 500 * 0.65);
+      }}
     >
-      {!autoClose && (
-        <AiOutlineClose
-          className="absolute mt-[8px] mr-[8px] top-0 right-0 text-[12px] font-bold cursor-pointer"
-          onClick={() => {
-            setUnmountClass("animate-hideSnackbarOnTop");
-            setTimeout(() => {
-              manualClose(idNum);
-            }, 500 * 0.65);
-          }}
-        />
-      )}
       {!!icons && icons}
       <span className="transition-[top]">{message}</span>
     </div>,
@@ -105,6 +110,7 @@ export function Snackbar(props: Props) {
 }
 
 let snackbarRoot: Root | null = null;
+
 const getSnackbarRoot = () => {
   let container = document.getElementById("snackbar-root");
 
@@ -116,8 +122,14 @@ const getSnackbarRoot = () => {
   .animate-showSnackbarOnTop {
     animation: showSnackbarOnTop 0.5s forwards;
   }
+  .animate-showSnackbarOnBottom {
+    animation: showSnackbarOnBottom 0.5s forwards;
+  }
   .animate-hideSnackbarOnTop {
     animation: hideSnackbarOnTop 0.5s forwards;
+  }
+  .animate-hideSnackbarOnBottom {
+    animation: hideSnackbarOnBottom 0.5s forwards;
   }
   @keyframes showSnackbarOnTop {
     0% { opacity: 0; transform: translate(-50%, 0); }
@@ -151,7 +163,7 @@ const getSnackbarRoot = () => {
 };
 
 const safeUnmountSnackbar = () => {
-  //이벤트 루프를 다음으로 넘기기 위한 setTimeout 설정
+  //render 중 unmount시에 이벤트 루프를 한단계 미룸
   setTimeout(() => {
     if (snackbarRoot) {
       snackbarRoot.unmount(); // React Root 언마운트
@@ -163,11 +175,11 @@ const safeUnmountSnackbar = () => {
     }
   }, 0);
 };
-
-Snackbar.show = async (config: SnackbarConfigType) => {
+Snackbar.show = (config: SnackbarConfigType) => {
   const {
     message = "It's snack bar",
     snackbarPosition = "top",
+    type = "success",
     icons = "",
     autoClose = true,
     autoCloseTime = "2s",
@@ -175,127 +187,20 @@ Snackbar.show = async (config: SnackbarConfigType) => {
   } = config;
   const snackbarRoot = getSnackbarRoot();
   const idNum = Date.now();
-  await new Promise(() => {
-    return snackbarRoot.render(
-      <SnackbarWrapper
-        status="show"
-        idNum={idNum}
-        message={message}
-        snackbarPosition={snackbarPosition}
-        icons={icons}
-        autoClose={autoClose}
-        autoCloseTime={autoCloseTime}
-        {...rest}
-      />,
-    );
-  });
-};
-Snackbar.info = async (config: SnackbarConfigType) => {
-  const {
-    message = "It's snack bar",
-    snackbarPosition = "top",
-    icons = "",
-    autoClose = true,
-    autoCloseTime = "2s",
-    ...rest
-  } = config;
-  const snackbarRoot = getSnackbarRoot();
-  const idNum = Date.now();
-  await new Promise(() => {
-    return snackbarRoot.render(
-      <SnackbarWrapper
-        status="info"
-        idNum={idNum}
-        message={message}
-        snackbarPosition={snackbarPosition}
-        icons={icons || <AiFillInfoCircle />}
-        autoClose={autoClose}
-        autoCloseTime={autoCloseTime}
-        manualClose={() => {
-          safeUnmountSnackbar();
-        }}
-        {...rest}
-      />,
-    );
-  });
-};
-Snackbar.success = async (config: SnackbarConfigType) => {
-  const {
-    message = "It's snack bar",
-    snackbarPosition = "top",
-    icons = "",
-    autoClose = true,
-    autoCloseTime = "2s",
-    ...rest
-  } = config;
-  const snackbarRoot = getSnackbarRoot();
-  const idNum = Date.now();
-  await new Promise(() => {
-    return snackbarRoot.render(
-      <SnackbarWrapper
-        status="success"
-        idNum={idNum}
-        message={message}
-        snackbarPosition={snackbarPosition}
-        icons={icons || <AiFillCheckCircle />}
-        autoClose={autoClose}
-        autoCloseTime={autoCloseTime}
-        {...rest}
-      />,
-    );
-  });
-};
-Snackbar.warning = async (config: SnackbarConfigType) => {
-  const {
-    message = "It's snack bar",
-    snackbarPosition = "top",
-    icons = "",
-    autoClose = true,
-    autoCloseTime = "2s",
-    ...rest
-  } = config;
-  const snackbarRoot = getSnackbarRoot();
-  const idNum = Date.now();
-  await new Promise(() => {
-    return snackbarRoot.render(
-      <SnackbarWrapper
-        status="warning"
-        idNum={idNum}
-        message={message}
-        snackbarPosition={snackbarPosition}
-        icons={icons || <AiFillWarning />}
-        autoClose={autoClose}
-        autoCloseTime={autoCloseTime}
-        {...rest}
-      />,
-    );
-  });
-};
-Snackbar.error = async (config: SnackbarConfigType) => {
-  const {
-    message = "It's snack bar",
-    snackbarPosition = "top",
-    icons = "",
-    autoClose = true,
-    autoCloseTime = "2s",
-    ...rest
-  } = config;
-  const snackbarRoot = getSnackbarRoot();
-  const idNum = Date.now();
-  await new Promise(() => {
-    return snackbarRoot.render(
-      <SnackbarWrapper
-        status="error"
-        idNum={idNum}
-        message={message}
-        snackbarPosition={snackbarPosition}
-        icons={icons || <AiFillCloseCircle />}
-        autoClose={autoClose}
-        autoCloseTime={autoCloseTime}
-        {...rest}
-      />,
-    );
-  });
+  return snackbarRoot.render(
+    <SnackbarWrapper
+      type={type}
+      idNum={idNum}
+      message={message}
+      snackbarPosition={snackbarPosition}
+      icons={icons}
+      autoClose={autoClose}
+      autoCloseTime={autoCloseTime}
+      unmount={safeUnmountSnackbar}
+      root={snackbarRoot}
+      {...rest}
+    />,
+  );
 };
 
 Snackbar.unmount = () => {
