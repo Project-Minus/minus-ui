@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export interface ImageViewerConfig {
   url: string;
@@ -8,4 +10,12 @@ export interface ImageViewerConfig {
   viewerClassName?: string;
   imageClassName?: string;
   panelClassName?: string;
+  icons?: {
+    flipUp: ReactNode;
+    flipDown: ReactNode;
+    rotateLeft: ReactNode;
+    rotateRight: ReactNode;
+    zoomIn: ReactNode;
+    zoomOut: ReactNode;
+  };
 }

@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Snackbar } from "../packages/core/src/components/snackbar/Snackbar";
 import { ImageViewer } from "../packages/core/src/components/imageViewer/ImageViewer";
+import { BiX } from "react-icons/bi";
 export default function RootPage() {
   const navigate = useNavigate();
   return (
@@ -19,6 +20,14 @@ export default function RootPage() {
               },
               onUnMount: () => {
                 console.log(345);
+              },
+              icons: {
+                flipUp: <BiX />,
+                flipDown: <BiX />,
+                rotateLeft: <BiX />,
+                rotateRight: <BiX />,
+                zoomIn: <BiX />,
+                zoomOut: <BiX />,
               },
             });
           }}

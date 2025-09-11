@@ -2,13 +2,6 @@ import { createPortal } from "react-dom";
 
 import { createRoot, type Root } from "react-dom/client";
 import { useEffect, useRef, useState } from "react";
-import {
-  CgArrowsVAlt,
-  CgArrowsHAlt,
-  CgCornerUpLeft,
-  CgCornerUpRight,
-} from "react-icons/cg";
-import { AiOutlineZoomIn, AiOutlineZoomOut } from "react-icons/ai";
 import { BiX } from "react-icons/bi";
 import { cn } from "../utils";
 import { ImageViewerConfig } from "../../types";
@@ -19,7 +12,7 @@ interface Props extends ImageViewerConfig {
 }
 
 type Axis = "X" | "Y" | "Z";
-const IMAGE_ICONS_STYLE = "w-4 h-4 text-white cursor-pointer md:w-6 md:h-6";
+const IMAGE_ICONS_STYLE = "cursor-pointer";
 
 /**
  * 이미지 클릭 시 확대해서 볼 수 있는 이미지 뷰어
@@ -33,6 +26,21 @@ const IMAGE_ICONS_STYLE = "w-4 h-4 text-white cursor-pointer md:w-6 md:h-6";
  * @param viewerClassName - viewer class (optional)
  * @param imageClassName - image 감싼 div class (optional)
  * @param panelClassName - 패널 class (optional)
+ * @param icons - 패널 아이콘들 (optional) {
+ * 
+     flipUp
+
+     flipDown
+
+     rotateLeft
+
+     rotateRight
+     
+     zoomIn
+
+     zoomOut
+
+   };
  * @returns
  */
 export function ImageViewer({
@@ -45,7 +53,16 @@ export function ImageViewer({
   imageClassName,
   viewerClassName,
   panelClassName,
+  icons = {
+    flipUp: "filpUp",
+    flipDown: "flipDown",
+    rotateLeft: "rotateLeft",
+    rotateRight: "rotateRight",
+    zoomIn: "zoomIn",
+    zoomOut: "zoomOut",
+  },
 }: Props) {
+  const { flipUp, flipDown, rotateLeft, rotateRight, zoomIn, zoomOut } = icons;
   const imageContentRef = useRef<HTMLDivElement>(null);
   const [zoomBlock, setZoomBlock] = useState<{
     zoomIn: boolean;
@@ -79,16 +96,13 @@ export function ImageViewer({
     "fixed z-101 top-0 left-0 w-screen h-screen flex flex-col justify-center items-center bg-black/50 text-white will-change-transform animate-viewerScaleUp",
     containerClassName,
   );
-  const viewerClass = cn(
-    "relative w-[300px] h-[240px] md:w-[800px] md:h-[650px]",
-    viewerClassName,
-  );
+  const viewerClass = cn("relative w-[800px] h-[650px]", viewerClassName);
   const imageClass = cn(
     "relative flex justify-center items-center w-full h-full backface-visible transform-3d image-viewer-transition",
     imageClassName,
   );
   const panelClass = cn(
-    "relative mt-12.5 p-5 bg-[rgba(15,15,15,0.7)] flex justify-between items-center w-[250px] rounded-2xl text-white md:w-[400px] md:m-5",
+    "relative flex justify-between items-center gap-4 mt-12.5 p-5 bg-[rgba(15,15,15,0.7)] text-white rounded-2xl",
     panelClassName,
   );
 
@@ -375,50 +389,62 @@ export function ImageViewer({
             e.preventDefault();
           }}
         >
-          <CgArrowsVAlt
+          <div
             className={IMAGE_ICONS_STYLE}
             onClick={() => {
               resetTranslate();
               handleImageScale("flip", "Y", 180);
             }}
-          />
-          <CgArrowsHAlt
+          >
+            {flipUp}
+          </div>
+          <div
             className={IMAGE_ICONS_STYLE}
             onClick={() => {
               resetTranslate();
               handleImageScale("flip", "X", 180);
             }}
-          />
-          <CgCornerUpLeft
+          >
+            {flipDown}
+          </div>
+          <div
             className={IMAGE_ICONS_STYLE}
             onClick={() => {
               resetTranslate();
               const newRotateCount = rotateLeftAndRight - 1;
               setRotateLeftAndRight(newRotateCount);
             }}
-          />
-          <CgCornerUpRight
+          >
+            {rotateLeft}
+          </div>
+          <div
             className={IMAGE_ICONS_STYLE}
             onClick={() => {
               resetTranslate();
               const newRotateCount = rotateLeftAndRight + 1;
               setRotateLeftAndRight(newRotateCount);
             }}
-          />
-          <AiOutlineZoomIn
+          >
+            {rotateRight}
+          </div>
+          <div
             className={IMAGE_ICONS_STYLE}
             onClick={() => {
               handleZoom("zoomIn");
             }}
             style={{ ...getZoomBlockStyle(zoomBlock.zoomIn) }}
-          />
-          <AiOutlineZoomOut
+          >
+            {zoomIn}
+          </div>
+          <div
             className={IMAGE_ICONS_STYLE}
             onClick={() => {
               handleZoom("zoomOut");
             }}
             style={{ ...getZoomBlockStyle(zoomBlock.zoomOut) }}
-          />
+          >
+            {zoomOut}
+          </div>
         </div>
       )}
     </div>,
