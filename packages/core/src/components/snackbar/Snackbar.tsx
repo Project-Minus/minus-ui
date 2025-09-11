@@ -18,6 +18,28 @@ import {
 } from "./utils";
 import { cn } from "../utils";
 
+/**
+ * 
+ * Snackbar 알림 기능
+ * 
+ *  Snackbar.show({ message: 'snackbar!', ...}) 의 형식으로 사용
+ * 
+ * @param message - 안에 출력될 내용 (required)
+ * @param className - snackbar class (optional)
+ * @param type - snackbar 기본 제공 style type (optional)(success, error, warning, info)
+ * @param snackbarPosition - snackbar 표출 위치 (optional)("top"
+  | "bottom"
+  | "left-top"
+  | "left-bottom"
+  | "right-top"
+  | "right-bottom";)
+ * @param maxCount - 한번에 표출될 snackbar 개수 (optional)
+ * @param icons - snackbar 앞에 나올 아이콘 (optional)
+ * @param autoClose - snackbar 자동 닫힘 여부 (optional)
+ * @param autoCloseTime - snackbar 표출 시간 (optional)(auto close일때, s 혹은 ms 단위로 사용)
+ * @param manualClose - snackbar 수동 닫기 시 닫을때 발생하는 함수 (optional)(autoclose가 아닐때 사용)
+ * @returns 
+ */
 export function Snackbar(props: SnackbarType) {
   const {
     index,
