@@ -7,6 +7,7 @@ import {
   MouseEvent,
 } from "react";
 import { TooltipPositionType } from "@minus-ui/types";
+import { cn } from "../utils";
 
 const calcBubblePosition = (
   position:
@@ -24,11 +25,8 @@ const calcBubblePosition = (
   childHeight: number,
 ) => {
   //위치 보정치
-  const LEFT_VERTICAL_CORRECTION = 12;
-  const LEFT_HORIZONTAL_CORRECTION = 4;
-  const MULTI_VERTICAL_CORRECTION = 8;
-  const MULTI_HORIZONTAL_CORRECTION = 8;
-  const COMMON_VERTICAL_CORRECTION = -4;
+  const LEFT_HORIZONTAL_CORRECTION = 8;
+  const VERTICAL_CORRECTION = 8;
   const COMMON_HORIZONTAL_CORRECTION = 10;
   if (!parentWidth || !parentHeight || !childWidth || !childHeight) {
     return {};
@@ -37,46 +35,49 @@ const calcBubblePosition = (
     switch (position) {
       case "right":
         return {
-          top: parentHeight / 2 - childHeight / 2 - LEFT_VERTICAL_CORRECTION,
-          left: parentWidth - LEFT_HORIZONTAL_CORRECTION,
+          top: parentHeight / 2 - childHeight / 2,
+          left: parentWidth + LEFT_HORIZONTAL_CORRECTION,
         };
       case "left":
         return {
-          top: parentHeight / 2 - childHeight / 2 - LEFT_VERTICAL_CORRECTION,
-          right: parentWidth - LEFT_HORIZONTAL_CORRECTION,
+          top: parentHeight / 2 - childHeight / 2,
+          right: parentWidth + LEFT_HORIZONTAL_CORRECTION,
         };
       case "bottom":
         return {
-          top: parentHeight + COMMON_VERTICAL_CORRECTION,
+          top: parentHeight + VERTICAL_CORRECTION,
           left: parentWidth / 2 - childWidth / 2 - COMMON_HORIZONTAL_CORRECTION,
         };
       case "top":
         return {
-          bottom: parentHeight + COMMON_VERTICAL_CORRECTION,
-          left: parentWidth / 2 - childWidth / 2 - COMMON_HORIZONTAL_CORRECTION,
-        };
-      case "left-top":
-        return {
-          bottom: parentHeight + COMMON_VERTICAL_CORRECTION,
-          left: parentWidth - childWidth * 0.9 - MULTI_HORIZONTAL_CORRECTION,
+          bottom: parentHeight + VERTICAL_CORRECTION,
+          left: parentWidth / 2 - childWidth / 2,
         };
       case "right-top":
         return {
-          bottom: parentHeight + COMMON_VERTICAL_CORRECTION,
-          right: parentWidth - childWidth * 0.9 - MULTI_HORIZONTAL_CORRECTION,
+          bottom: parentHeight + VERTICAL_CORRECTION,
+          left: parentWidth - childWidth * 0.9 - VERTICAL_CORRECTION,
         };
-      case "left-bottom":
+      case "left-top":
         return {
-          top: parentHeight - MULTI_VERTICAL_CORRECTION,
-          left: parentWidth - childWidth * 0.9 - MULTI_HORIZONTAL_CORRECTION,
+          bottom: parentHeight + VERTICAL_CORRECTION,
+          right: parentWidth - childWidth * 0.9 - VERTICAL_CORRECTION,
         };
       case "right-bottom":
         return {
-          top: parentHeight - MULTI_VERTICAL_CORRECTION,
-          right: parentWidth - childWidth * 0.9 - MULTI_HORIZONTAL_CORRECTION,
+          top: parentHeight + VERTICAL_CORRECTION,
+          left: parentWidth - childWidth * 0.9 - VERTICAL_CORRECTION,
+        };
+      case "left-bottom":
+        return {
+          top: parentHeight + VERTICAL_CORRECTION,
+          right: parentWidth - childWidth * 0.9 - VERTICAL_CORRECTION,
         };
       default:
-        return {};
+        return {
+          bottom: parentHeight + VERTICAL_CORRECTION,
+          left: parentWidth / 2 - childWidth / 2 - COMMON_HORIZONTAL_CORRECTION,
+        };
     }
   }
   return {};
@@ -86,29 +87,33 @@ interface Props {
   contents: ReactNode;
   parentDimension: { width: number; height: number };
   position?: TooltipPositionType;
-  size?: string;
   isTail?: boolean;
-  textColor: string;
-  bubbleContentClassName: string;
+  isDraggable?: boolean;
+  contentClassName: string;
 }
 export default function TooltipBubble(props: Props) {
   const {
     contents,
     parentDimension,
     position = "top",
-    size,
-    isTail = true,
-    textColor,
-    bubbleContentClassName,
+    isTail,
+    isDraggable,
+    contentClassName,
   } = props;
   const [positionStyle, setPositionStyle] = useState<CSSProperties>({});
   const bubbleRef = useRef<HTMLDivElement>(null);
   const positionClass = isTail ? ` speech-bubble--${position}` : "";
-  const sizeClass = size ? ` speech-bubble--${size}` : "";
-  const textClass = ` speech-bubble--text--${textColor}`;
   const childWidth = bubbleRef?.current?.clientWidth;
   const childHeight = bubbleRef?.current?.clientHeight;
-
+  const draggableClassName = isDraggable
+    ? "group-hover:opacity-100 group-hover:select-text"
+    : "peer-hover:opacity-100";
+  // const tailClassName = isTail ? 'after:absolute after:conntent-[""]':''
+  const bubbleClass = cn(
+    "opacity-0 select-none",
+    draggableClassName,
+    "absolute",
+  );
   const preventEvent = (e: MouseEvent) => {
     e.stopPropagation();
   };
@@ -135,7 +140,7 @@ export default function TooltipBubble(props: Props) {
       onClick={preventEvent}
       ref={bubbleRef}
       style={{ ...positionStyle }}
-      className={`speech-bubble${positionClass}${sizeClass}${textClass}${bubbleContentClassName} absolute`}
+      className={`speech-bubble${positionClass}${contentClassName} ${bubbleClass} left-[50%] bottom-[6px] border-l-9`}
     >
       {contents}
     </div>

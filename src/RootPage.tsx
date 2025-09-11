@@ -35,9 +35,18 @@ export default function RootPage() {
         />
       </div>
       <Tooltip
-        contents={<h1 className="text-green-500">Vite + React</h1>}
-        bubbleContents={"hihi"}
-      />
+        containerClassName="inline-block"
+        contents={"hihi"}
+        position="right-bottom"
+        isDraggable
+      >
+        <div className="inline-block text-green-500 border-1 p-5">
+          Vite + React
+        </div>
+      </Tooltip>
+      <Tooltip contents={"hihi"}>
+        <h1 className="inline-block text-green-500 mb-10">Vite + React</h1>
+      </Tooltip>
       <h1 className="text-green-500">Vite + React</h1>
       <div className="card">
         <button

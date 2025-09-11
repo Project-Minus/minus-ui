@@ -4,18 +4,15 @@ import TooltipBubble from "./TooltipBubble";
 
 export function Tooltip(props: TooltipPropsType) {
   const {
+    children,
     contents,
-    bubbleContents,
     position,
-    size,
-    textColor = "default",
     isTail = true,
     isShowBubble = true,
     isDraggable = false,
     isCheckOverflow = false,
-    boxClassName,
-    boxContentClassName,
-    bubbleContentClassName = "",
+    containerClassName,
+    contentClassName = "",
   } = props;
   const bubbleBoxRef = useRef<HTMLDivElement>(null);
   const [dimensions, setDimensions] = useState<{
@@ -26,7 +23,6 @@ export function Tooltip(props: TooltipPropsType) {
   const [isTextOverflow, setIsTextOverflow] =
     useState<boolean>(!isCheckOverflow);
 
-  const draggableClass = isDraggable ? " draggable" : " non-draggable";
   const observeBubbleBox = useCallback(() => {
     if (!bubbleBoxRef.current) {
       return;
@@ -52,7 +48,7 @@ export function Tooltip(props: TooltipPropsType) {
     return () => {
       window.removeEventListener("resize", observeBubbleBox);
     };
-  }, [observeBubbleBox, size]);
+  }, [observeBubbleBox]);
 
   const handleCheckOverflow = (e: MouseEvent<HTMLParagraphElement>) => {
     if (!isCheckOverflow) {
@@ -76,27 +72,24 @@ export function Tooltip(props: TooltipPropsType) {
   }, [isCheckOverflow]);
 
   return (
+    // <div ref={bubbleBoxRef} className={`group relative ${boxClassName}`}>
     <div
       ref={bubbleBoxRef}
-      className={`bubble-box${draggableClass} relative ${boxClassName}`}
+      className={`group ${containerClassName} relative`}
+      onMouseEnter={handleCheckOverflow}
     >
-      <div
-        className={`bubble-box__contents ${boxContentClassName}`}
-        onMouseEnter={handleCheckOverflow}
-      >
-        {contents}
-      </div>
       {isShowBubble && isTextOverflow && (
         <TooltipBubble
           position={position}
-          size={size}
           isTail={isTail}
-          contents={bubbleContents}
+          contents={contents}
           parentDimension={dimensions}
-          textColor={textColor}
-          bubbleContentClassName={bubbleContentClassName}
+          contentClassName={contentClassName}
+          isDraggable={isDraggable}
         />
       )}
+      {children}
     </div>
+    // </div>
   );
 }
