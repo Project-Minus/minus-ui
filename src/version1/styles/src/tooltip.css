@@ -135,299 +135,43 @@
   transform: translateY(-50%);
 }
 
-.speech-bubble--text--orange {
-  color: orange;
-}
+/* @use "../../../../mixin.scss" as *;
 
-.speech-bubble--text--red {
-  color: red;
-}
-
-.speech-bubble--text--lime {
-  color: lime;
-}
-
-.speech-bubble--text--green {
-  color: green;
-}
-
-.speech-bubble--text--blue {
-  color: blue;
-}
-
-.speech-bubble--text--purple {
-  color: purple;
-}
-
-.speech-bubble--text--violet {
-  color: violet;
-}
-
-.speech-bubble--text--pink {
-  color: pink;
-}
-
-.speech-bubble--text--yellow {
-  color: yellow;
-}
-
-.speech-bubble--background--orange {
-  background-color: orange;
-}
-.speech-bubble--background--orange.speech-bubble--top:after {
-  content: "";
-  border-top: 12px solid orange;
-}
-.speech-bubble--background--orange.speech-bubble--bottom:after {
-  border-bottom: 12px solid orange;
-}
-.speech-bubble--background--orange.speech-bubble--left:after {
-  border-left: 12px solid orange;
-}
-.speech-bubble--background--orange.speech-bubble--right:after {
-  border-right: 12px solid orange;
-}
-.speech-bubble--background--orange.speech-bubble--left-top:after {
-  border-top: 12px solid orange;
-}
-.speech-bubble--background--orange.speech-bubble--right-top:after {
-  border-top: 12px solid orange;
-}
-.speech-bubble--background--orange.speech-bubble--left-bottom:after {
-  border-bottom: 12px solid orange;
-}
-.speech-bubble--background--orange.speech-bubble--right-bottom:after {
-  border-bottom: 12px solid orange;
-}
-
-.speech-bubble--background--red {
-  background-color: red;
-}
-.speech-bubble--background--red.speech-bubble--top:after {
-  content: "";
-  border-top: 12px solid red;
-}
-.speech-bubble--background--red.speech-bubble--bottom:after {
-  border-bottom: 12px solid red;
-}
-.speech-bubble--background--red.speech-bubble--left:after {
-  border-left: 12px solid red;
-}
-.speech-bubble--background--red.speech-bubble--right:after {
-  border-right: 12px solid red;
-}
-.speech-bubble--background--red.speech-bubble--left-top:after {
-  border-top: 12px solid red;
-}
-.speech-bubble--background--red.speech-bubble--right-top:after {
-  border-top: 12px solid red;
-}
-.speech-bubble--background--red.speech-bubble--left-bottom:after {
-  border-bottom: 12px solid red;
-}
-.speech-bubble--background--red.speech-bubble--right-bottom:after {
-  border-bottom: 12px solid red;
-}
-
-.speech-bubble--background--lime {
-  background-color: lime;
-}
-.speech-bubble--background--lime.speech-bubble--top:after {
-  content: "";
-  border-top: 12px solid lime;
-}
-.speech-bubble--background--lime.speech-bubble--bottom:after {
-  border-bottom: 12px solid lime;
-}
-.speech-bubble--background--lime.speech-bubble--left:after {
-  border-left: 12px solid lime;
-}
-.speech-bubble--background--lime.speech-bubble--right:after {
-  border-right: 12px solid lime;
-}
-.speech-bubble--background--lime.speech-bubble--left-top:after {
-  border-top: 12px solid lime;
-}
-.speech-bubble--background--lime.speech-bubble--right-top:after {
-  border-top: 12px solid lime;
-}
-.speech-bubble--background--lime.speech-bubble--left-bottom:after {
-  border-bottom: 12px solid lime;
-}
-.speech-bubble--background--lime.speech-bubble--right-bottom:after {
-  border-bottom: 12px solid lime;
-}
-
-.speech-bubble--background--green {
-  background-color: green;
-}
-.speech-bubble--background--green.speech-bubble--top:after {
-  content: "";
-  border-top: 12px solid green;
-}
-.speech-bubble--background--green.speech-bubble--bottom:after {
-  border-bottom: 12px solid green;
-}
-.speech-bubble--background--green.speech-bubble--left:after {
-  border-left: 12px solid green;
-}
-.speech-bubble--background--green.speech-bubble--right:after {
-  border-right: 12px solid green;
-}
-.speech-bubble--background--green.speech-bubble--left-top:after {
-  border-top: 12px solid green;
-}
-.speech-bubble--background--green.speech-bubble--right-top:after {
-  border-top: 12px solid green;
-}
-.speech-bubble--background--green.speech-bubble--left-bottom:after {
-  border-bottom: 12px solid green;
-}
-.speech-bubble--background--green.speech-bubble--right-bottom:after {
-  border-bottom: 12px solid green;
-}
-
-.speech-bubble--background--blue {
-  background-color: blue;
-}
-.speech-bubble--background--blue.speech-bubble--top:after {
-  content: "";
-  border-top: 12px solid blue;
-}
-.speech-bubble--background--blue.speech-bubble--bottom:after {
-  border-bottom: 12px solid blue;
-}
-.speech-bubble--background--blue.speech-bubble--left:after {
-  border-left: 12px solid blue;
-}
-.speech-bubble--background--blue.speech-bubble--right:after {
-  border-right: 12px solid blue;
-}
-.speech-bubble--background--blue.speech-bubble--left-top:after {
-  border-top: 12px solid blue;
-}
-.speech-bubble--background--blue.speech-bubble--right-top:after {
-  border-top: 12px solid blue;
-}
-.speech-bubble--background--blue.speech-bubble--left-bottom:after {
-  border-bottom: 12px solid blue;
-}
-.speech-bubble--background--blue.speech-bubble--right-bottom:after {
-  border-bottom: 12px solid blue;
-}
-
-.speech-bubble--background--purple {
-  background-color: purple;
-}
-.speech-bubble--background--purple.speech-bubble--top:after {
-  content: "";
-  border-top: 12px solid purple;
-}
-.speech-bubble--background--purple.speech-bubble--bottom:after {
-  border-bottom: 12px solid purple;
-}
-.speech-bubble--background--purple.speech-bubble--left:after {
-  border-left: 12px solid purple;
-}
-.speech-bubble--background--purple.speech-bubble--right:after {
-  border-right: 12px solid purple;
-}
-.speech-bubble--background--purple.speech-bubble--left-top:after {
-  border-top: 12px solid purple;
-}
-.speech-bubble--background--purple.speech-bubble--right-top:after {
-  border-top: 12px solid purple;
-}
-.speech-bubble--background--purple.speech-bubble--left-bottom:after {
-  border-bottom: 12px solid purple;
-}
-.speech-bubble--background--purple.speech-bubble--right-bottom:after {
-  border-bottom: 12px solid purple;
-}
-
-.speech-bubble--background--violet {
-  background-color: violet;
-}
-.speech-bubble--background--violet.speech-bubble--top:after {
-  content: "";
-  border-top: 12px solid violet;
-}
-.speech-bubble--background--violet.speech-bubble--bottom:after {
-  border-bottom: 12px solid violet;
-}
-.speech-bubble--background--violet.speech-bubble--left:after {
-  border-left: 12px solid violet;
-}
-.speech-bubble--background--violet.speech-bubble--right:after {
-  border-right: 12px solid violet;
-}
-.speech-bubble--background--violet.speech-bubble--left-top:after {
-  border-top: 12px solid violet;
-}
-.speech-bubble--background--violet.speech-bubble--right-top:after {
-  border-top: 12px solid violet;
-}
-.speech-bubble--background--violet.speech-bubble--left-bottom:after {
-  border-bottom: 12px solid violet;
-}
-.speech-bubble--background--violet.speech-bubble--right-bottom:after {
-  border-bottom: 12px solid violet;
-}
-
-.speech-bubble--background--pink {
-  background-color: pink;
-}
-.speech-bubble--background--pink.speech-bubble--top:after {
-  content: "";
-  border-top: 12px solid pink;
-}
-.speech-bubble--background--pink.speech-bubble--bottom:after {
-  border-bottom: 12px solid pink;
-}
-.speech-bubble--background--pink.speech-bubble--left:after {
-  border-left: 12px solid pink;
-}
-.speech-bubble--background--pink.speech-bubble--right:after {
-  border-right: 12px solid pink;
-}
-.speech-bubble--background--pink.speech-bubble--left-top:after {
-  border-top: 12px solid pink;
-}
-.speech-bubble--background--pink.speech-bubble--right-top:after {
-  border-top: 12px solid pink;
-}
-.speech-bubble--background--pink.speech-bubble--left-bottom:after {
-  border-bottom: 12px solid pink;
-}
-.speech-bubble--background--pink.speech-bubble--right-bottom:after {
-  border-bottom: 12px solid pink;
-}
-
-.speech-bubble--background--yellow {
-  background-color: yellow;
-}
-.speech-bubble--background--yellow.speech-bubble--top:after {
-  content: "";
-  border-top: 12px solid yellow;
-}
-.speech-bubble--background--yellow.speech-bubble--bottom:after {
-  border-bottom: 12px solid yellow;
-}
-.speech-bubble--background--yellow.speech-bubble--left:after {
-  border-left: 12px solid yellow;
-}
-.speech-bubble--background--yellow.speech-bubble--right:after {
-  border-right: 12px solid yellow;
-}
-.speech-bubble--background--yellow.speech-bubble--left-top:after {
-  border-top: 12px solid yellow;
-}
-.speech-bubble--background--yellow.speech-bubble--right-top:after {
-  border-top: 12px solid yellow;
-}
-.speech-bubble--background--yellow.speech-bubble--left-bottom:after {
-  border-bottom: 12px solid yellow;
-}
-.speech-bubble--background--yellow.speech-bubble--right-bottom:after {
-  border-bottom: 12px solid yellow;
-}/*# sourceMappingURL=tooltip.css.map */
+.bubble-box {
+  position: relative;
+  width: 100%;
+  &__contents {
+    width: 100%;
+    @include ellipsisSingleLine();
+    white-space: pre;
+    &.flex {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    &.block {
+      display: block;
+    }
+  }
+  &.draggable {
+    &:hover {
+      .speech-bubble {
+        opacity: 1;
+        pointer-events: all;
+        @include allowSelect;
+      }
+    }
+  }
+  &.non-draggable {
+    &:hover {
+      .speech-bubble {
+        opacity: 1;
+      }
+    }
+  }
+  .speech-bubble {
+    opacity: 0;
+    transition: opacity 0.2s;
+    @include preventSelect;
+  }
+} */

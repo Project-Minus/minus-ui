@@ -89,7 +89,7 @@ interface Props {
   size?: string;
   isTail?: boolean;
   textColor: string;
-  backgroundColor: string;
+  bubbleContentClassName: string;
 }
 export default function TooltipBubble(props: Props) {
   const {
@@ -99,14 +99,13 @@ export default function TooltipBubble(props: Props) {
     size,
     isTail = true,
     textColor,
-    backgroundColor,
+    bubbleContentClassName,
   } = props;
   const [positionStyle, setPositionStyle] = useState<CSSProperties>({});
   const bubbleRef = useRef<HTMLDivElement>(null);
   const positionClass = isTail ? ` speech-bubble--${position}` : "";
   const sizeClass = size ? ` speech-bubble--${size}` : "";
   const textClass = ` speech-bubble--text--${textColor}`;
-  const backgroundClass = ` speech-bubble--background--${backgroundColor}`;
   const childWidth = bubbleRef?.current?.clientWidth;
   const childHeight = bubbleRef?.current?.clientHeight;
 
@@ -135,8 +134,8 @@ export default function TooltipBubble(props: Props) {
     <div
       onClick={preventEvent}
       ref={bubbleRef}
-      style={positionStyle}
-      className={`speech-bubble${positionClass}${sizeClass}${textClass}${backgroundClass}`}
+      style={{ ...positionStyle }}
+      className={`speech-bubble${positionClass}${sizeClass}${textClass}${bubbleContentClassName} absolute`}
     >
       {contents}
     </div>

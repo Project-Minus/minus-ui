@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { Snackbar } from "../packages/core/src/components/snackbar/Snackbar";
 import { ImageViewer } from "../packages/core/src/components/imageViewer/ImageViewer";
 import { BiX } from "react-icons/bi";
+import { Tooltip } from "./../packages/core/src/components/tooltip/Tooltip";
 export default function RootPage() {
   const navigate = useNavigate();
   return (
@@ -33,6 +34,10 @@ export default function RootPage() {
           }}
         />
       </div>
+      <Tooltip
+        contents={<h1 className="text-green-500">Vite + React</h1>}
+        bubbleContents={"hihi"}
+      />
       <h1 className="text-green-500">Vite + React</h1>
       <div className="card">
         <button

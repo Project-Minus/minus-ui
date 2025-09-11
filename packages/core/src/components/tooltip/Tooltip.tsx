@@ -9,13 +9,13 @@ export function Tooltip(props: TooltipPropsType) {
     position,
     size,
     textColor = "default",
-    backgroundColor = "default",
     isTail = true,
     isShowBubble = true,
     isDraggable = false,
-    checkOverflow = false,
-    boxStyle,
-    boxContentStyle,
+    isCheckOverflow = false,
+    boxClassName,
+    boxContentClassName,
+    bubbleContentClassName = "",
   } = props;
   const bubbleBoxRef = useRef<HTMLDivElement>(null);
   const [dimensions, setDimensions] = useState<{
@@ -23,7 +23,8 @@ export function Tooltip(props: TooltipPropsType) {
     height: number;
   }>({ width: 0, height: 0 });
 
-  const [isTextOverflow, setIsTextOverflow] = useState<boolean>(!checkOverflow);
+  const [isTextOverflow, setIsTextOverflow] =
+    useState<boolean>(!isCheckOverflow);
 
   const draggableClass = isDraggable ? " draggable" : " non-draggable";
   const observeBubbleBox = useCallback(() => {
@@ -54,7 +55,7 @@ export function Tooltip(props: TooltipPropsType) {
   }, [observeBubbleBox, size]);
 
   const handleCheckOverflow = (e: MouseEvent<HTMLParagraphElement>) => {
-    if (!checkOverflow) {
+    if (!isCheckOverflow) {
       return;
     }
     if (e.currentTarget.scrollWidth > e.currentTarget.clientWidth) {
@@ -64,25 +65,23 @@ export function Tooltip(props: TooltipPropsType) {
     setIsTextOverflow(false);
   };
 
-  useEffect(() => {
-    setTimeout(() => {
-      observeBubbleBox();
-    }, 300);
-  }, [observeBubbleBox, isTextOverflow]);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     observeBubbleBox();
+  //   }, 300);
+  // }, [observeBubbleBox, isTextOverflow]);
 
   useEffect(() => {
-    setIsTextOverflow(!checkOverflow);
-  }, [checkOverflow]);
+    setIsTextOverflow(!isCheckOverflow);
+  }, [isCheckOverflow]);
 
   return (
     <div
       ref={bubbleBoxRef}
-      className={`bubble-box${draggableClass}`}
-      style={boxStyle}
+      className={`bubble-box${draggableClass} relative ${boxClassName}`}
     >
       <div
-        className="bubble-box__contents"
-        style={boxContentStyle}
+        className={`bubble-box__contents ${boxContentClassName}`}
         onMouseEnter={handleCheckOverflow}
       >
         {contents}
@@ -95,7 +94,7 @@ export function Tooltip(props: TooltipPropsType) {
           contents={bubbleContents}
           parentDimension={dimensions}
           textColor={textColor}
-          backgroundColor={backgroundColor}
+          bubbleContentClassName={bubbleContentClassName}
         />
       )}
     </div>
