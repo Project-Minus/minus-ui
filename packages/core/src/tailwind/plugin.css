@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+@layer utilities {
+  .animate-showSnackbarOnTop {
+    animation: showSnackbarOnTop 0.5s forwards;
+  }
+  .animate-showSnackbarOnBottom {
+    animation: showSnackbarOnBottom 0.5s forwards;
+  }
+  .animate-hideSnackbarOnTop {
+    animation: hideSnackbarOnTop 0.5s forwards;
+  }
+  .animate-hideSnackbarOnBottom {
+    animation: hideSnackbarOnBottom 0.5s forwards;
+  }
+}
+@layer components {
+  .custom_red {
+    color: red;
+  }
+  .custom_red.custom_bold {
+    color: red;
+    font-weight: bold;
+  }
+}
+
+@layer base {
+  @keyframes showSnackbarOnTop {
+    0% {
+      opacity: 0;
+      transform: translate(-50%, 0);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(-50%, 20px);
+    }
+  }
+  @keyframes hideSnackbarOnTop {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, 20px);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-50%, 0);
+    }
+  }
+  @keyframes showSnackbarOnBottom {
+    0% {
+      opacity: 0;
+      transform: translate(-50%, 0);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(-50%, -20px);
+    }
+  }
+  @keyframes hideSnackbarOnBottom {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, -20px);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-50%, 0);
+    }
+  }
+}

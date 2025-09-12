@@ -57,9 +57,9 @@ export default function RootPage() {
               message:
                 "hi! This is Minus-Snackbar! hi! This is Minus-Snackbar!",
               type: "info",
-              autoClose: true,
+              autoClose: false,
               snackbarPosition: "left-bottom",
-              maxCount: 4,
+              maxCount: 10,
             });
           }}
         >

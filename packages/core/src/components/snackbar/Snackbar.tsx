@@ -133,7 +133,7 @@ export function Snackbar(props: SnackbarType) {
       }}
     >
       {!!icons && icons}
-      <span className="transition-[top]">{message}</span>
+      <span className="transition-[top] custom_red custom_bold">{message}</span>
     </div>,
     document.getElementById("snackbar-root") as HTMLElement,
   );
@@ -145,41 +145,6 @@ const getSnackbarRoot = () => {
   let container = document.getElementById("snackbar-root");
 
   // root 컨테이너 없으면 새로 생성
-  if (!document.getElementById("snackbar-style")) {
-    const style = document.createElement("style");
-    style.id = "snackbar-style";
-    style.textContent = `
-  .animate-showSnackbarOnTop {
-    animation: showSnackbarOnTop 0.5s forwards;
-  }
-  .animate-showSnackbarOnBottom {
-    animation: showSnackbarOnBottom 0.5s forwards;
-  }
-  .animate-hideSnackbarOnTop {
-    animation: hideSnackbarOnTop 0.5s forwards;
-  }
-  .animate-hideSnackbarOnBottom {
-    animation: hideSnackbarOnBottom 0.5s forwards;
-  }
-  @keyframes showSnackbarOnTop {
-    0% { opacity: 0; transform: translate(-50%, 0); }
-    100% { opacity: 1; transform: translate(-50%, 20px); }
-  }
-  @keyframes hideSnackbarOnTop {
-    0% { opacity: 1; transform: translate(-50%, 20px); }
-    100% { opacity: 0; transform: translate(-50%, 0); }
-  }
-  @keyframes showSnackbarOnBottom {
-    0% { opacity: 0; transform: translate(-50%, 0); }
-    100% { opacity: 1; transform: translate(-50%, -20px); }
-  }
-  @keyframes hideSnackbarOnBottom {
-    0% { opacity: 1; transform: translate(-50%, -20px); }
-    100% { opacity: 0; transform: translate(-50%, 0); }
-  }
-  `;
-    document.head.appendChild(style);
-  }
   if (!container) {
     container = document.createElement("div");
     container.id = "snackbar-root";
