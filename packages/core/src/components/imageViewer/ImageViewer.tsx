@@ -2,7 +2,6 @@ import { createPortal } from "react-dom";
 
 import { createRoot, type Root } from "react-dom/client";
 import { useEffect, useRef, useState } from "react";
-import { BiX } from "react-icons/bi";
 import { cn } from "../utils";
 import { ImageViewerConfig } from "../../types";
 
@@ -329,10 +328,11 @@ export function ImageViewer({
     >
       <div className={viewerClass}>
         <div
-          className="relative z-100 flex justify-end w-full py-2 px-2"
+          className="absolute top-0 right-0 inline-block z-100 py-2 px-2 cursor-pointer"
           onClick={closeViewer}
         >
-          <BiX size={30} color="#FFFFFF" className="cursor-pointer" />
+          <div className="relative w-[24px] h-[2px] top-[2px] left-[0px] bg-white rotate-45"></div>
+          <div className="relative w-[24px] h-[2px] bg-white rotate-315"></div>
         </div>
         <div
           ref={imageContentRef}
