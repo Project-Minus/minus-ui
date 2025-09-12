@@ -6,13 +6,13 @@ import {
   MouseEvent,
   useEffect,
 } from "react";
-import { TooltipPositionType } from "@minus-ui/types";
 import { cn } from "../utils";
 import {
   getCalcBubblePosition,
   getDraggableClassName,
   getTailClassName,
 } from "./utils";
+import { TooltipPositionType } from "../../types";
 
 interface Props {
   contents: ReactNode;

@@ -1,5 +1,4 @@
-import { SnackbarPositionType } from "@minus-ui/types";
-import { SnackbarThemeType } from "../../types";
+import { SnackbarPositionType, SnackbarThemeType } from "../../types";
 
 export const convertCloseTime = (autoCloseTime: string) => {
   if (autoCloseTime.endsWith("ms")) {
