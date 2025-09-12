@@ -32,22 +32,11 @@
     "clean:all": "pnpm -r exec rm -rf node_modules && pnpm -r exec rm -rf dist",
     "clean": "rm -rf node_modules pnpm-lock.yaml && pnpm store prune",
     "build": "pnpm -r run build",
-    "build:type": "pnpm --filter @minus-ui/types run build",
-    "build:component": "pnpm --filter @minus-ui/components run build",
-    "build:styles": "pnpm --filter @minus-ui/styles run build",
     "build:core": "pnpm --filter @minus-ui/core run build",
-    "dev:component": "pnpm --filter @minus-ui/components run dev",
-    "dev:styles": "pnpm --filter @minus-ui/styles run dev",
-    "dev:type": "pnpm --filter @minus-ui/types run dev",
     "dev:core": "pnpm --filter @minus-ui/core run dev",
     "test": "pnpm -r run test",
     "lint": "pnpm -r run lint",
-    "publish:component": "pnpm --filter @minus-ui/components publish --access public",
-    "publish:styles": "pnpm --filter @minus-ui/styles publish --access public",
-    "publish:type": "pnpm --filter @minus-ui/type publish --access public",
-    "publish:core": "pnpm --filter @minus-ui/core publish --access public",
-    "publish:all": "pnpm run build && pnpm -r publish --access public --no-git-checks",
-    "publish:packages": "pnpm -r publish --access public --no-git-checks"
+    "publish:core": "pnpm --filter @minus-ui/core publish --access public"
   },
   "dependencies": {
     "@minus-ui/core": "workspace:*",
