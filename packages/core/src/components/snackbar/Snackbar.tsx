@@ -19,26 +19,34 @@ import {
 import { cn } from "../utils";
 
 /**
- * 
- * Snackbar 알림 기능
- * 
- *  Snackbar.show({ message: 'snackbar!', ...}) 의 형식으로 사용
- * 
- * @param message - 안에 출력될 내용 (required)
- * @param className - snackbar class (optional)
- * @param type - snackbar 기본 제공 style type (optional)(success, error, warning, info)
- * @param snackbarPosition - snackbar 표출 위치 (optional)("top"
-  | "bottom"
-  | "left-top"
-  | "left-bottom"
-  | "right-top"
-  | "right-bottom";)
- * @param maxCount - 한번에 표출될 snackbar 개수 (optional)
- * @param icons - snackbar 앞에 나올 아이콘 (optional)
- * @param autoClose - snackbar 자동 닫힘 여부 (optional)
- * @param autoCloseTime - snackbar 표출 시간 (optional)(auto close일때, s 혹은 ms 단위로 사용)
- * @param manualClose - snackbar 수동 닫기 시 닫을때 발생하는 함수 (optional)(autoclose가 아닐때 사용)
- * @returns 
+ * Snackbar 알림을 화면에 표시합니다.
+ *
+ * 사용 목적:
+ * - 짧은 상태 알림(성공/오류/경고/정보)을 화면 가장자리(위/아래/좌·우 상하)에 토스트 형태로 노출.
+ * - 자동 닫힘(autoclose) 또는 수동 닫기 콜백을 지원.
+ * - 동시에 표시될 개수 제한(maxCount)과 아이콘 커스터마이즈를 지원.
+ *
+ * @example
+ * // 기본 사용
+ * Snackbar.show({ message: "snackbar!" });
+ *
+ * @param {Object} options - 스낵바 옵션
+ * @param {string | React.ReactNode} options.message - 스낵바에 표시할 내용 **(required)**
+ * @param {string} [options.className] - 스낵바 컨테이너에 추가할 CSS 클래스(예: Tailwind 유틸)
+ * @param {"success"|"error"|"warning"|"info"} [options.type] - 기본 제공 스타일 타입
+ * @param {"top"|"bottom"|"left-top"|"left-bottom"|"right-top"|"right-bottom"} [options.snackbarPosition]
+ *   스낵바 표시 위치
+ * @param {number} [options.maxCount]
+ *   동시에 표시 가능한 최대 개수(초과 시 가장 오래된 항목 제거 또는 큐잉은 구현에 따름)
+ * @param {React.ReactNode} [options.icons]
+ *   메시지 앞에 표시할 아이콘(컴포넌트/노드)
+ * @param {boolean} [options.autoClose]
+ *   자동으로 닫힐지 여부
+ * @param {string} [options.autoCloseTime]
+ *   자동 닫힘 시간. `"2s"`, `"1500ms"` 형식으로 작성
+ * @param {() => void} [options.manualClose]
+ *   수동 닫기(사용자 클릭 등) 시 호출되는 콜백. `autoClose: false`일 때 사용
+ * @returns {JSX.Element}
  */
 export function Snackbar(props: SnackbarType) {
   const {
@@ -170,7 +178,7 @@ const getSnackbarRoot = () => {
     100% { opacity: 0; transform: translate(-50%, 0); }
   }
   `;
-    document.head.appendChild(style); // head에 직접 붙이기도 가능
+    document.head.appendChild(style);
   }
   if (!container) {
     container = document.createElement("div");

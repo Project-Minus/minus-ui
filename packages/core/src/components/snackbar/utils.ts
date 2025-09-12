@@ -11,26 +11,6 @@ export const convertCloseTime = (autoCloseTime: string) => {
   return 2000;
 };
 
-export const SNCMBAR_DEFAULT_STYLE = {
-  show: {},
-  info: {
-    color: "#16164b",
-    backgroundColor: "#DEDCF9",
-  },
-  success: {
-    color: "#2E4E2E",
-    backgroundColor: "#DEF9DC",
-  },
-  warning: {
-    color: "#5C5536",
-    backgroundColor: "#FDF3AA",
-  },
-  error: {
-    color: "#4E2E2E",
-    backgroundColor: "#F9DEDC",
-  },
-};
-
 export const getSnacbarPositionClassName = (position: SnackbarPositionType) => {
   const top = `top-[calc(60px+1px*var(--snackbar-vertical)))]`;
   const bottom = `bottom-[calc(60px+1px*var(--snackbar-vertical)))]`;
