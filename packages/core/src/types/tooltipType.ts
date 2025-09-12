@@ -1,5 +1,4 @@
-import { ReactNode } from "react";
-import { CSSProperties } from "react";
+import { PropsWithChildren, ReactNode } from "react";
 export type TooltipPositionType =
   | "left"
   | "right"
@@ -10,17 +9,14 @@ export type TooltipPositionType =
   | "right-top"
   | "right-bottom";
 
-export interface TooltipPropsType {
+export interface TooltipPropsType extends PropsWithChildren {
   contents: ReactNode;
-  bubbleContents: ReactNode | string;
   position?: TooltipPositionType;
-  textColor?: string;
-  backgroundColor?: string;
-  size?: string;
   isTail?: boolean;
   isShowBubble?: boolean;
   isDraggable?: boolean;
-  checkOverflow?: boolean;
-  boxStyle?: CSSProperties;
-  boxContentStyle?: CSSProperties;
+  isCheckOverflow?: boolean;
+  backgroundColor?: string;
+  containerClassName?: string;
+  contentClassName?: string;
 }
