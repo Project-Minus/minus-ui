@@ -16,14 +16,8 @@ export default function RootPage() {
           onClick={() => {
             ImageViewer.open({
               url: "/vite.svg",
-              onMount: () => {
-                console.log(123);
-              },
-              onUnMount: () => {
-                console.log(345);
-              },
               icons: {
-                flipUp: <BiX />,
+                flipUp: <BiX size={30} />,
                 flipDown: <BiX />,
                 rotateLeft: <BiX />,
                 rotateRight: <BiX />,
@@ -36,17 +30,25 @@ export default function RootPage() {
       </div>
       <Tooltip
         containerClassName="inline-block"
-        contents={"hihi"}
-        position="right-bottom"
-        isDraggable
+        contentClassName="text-red-500 font-bold"
+        contents={"It's tooltip!"}
+        position="right-top"
+        backgroundColor="white"
       >
-        <div className="inline-block text-green-500 border-1 p-5">
-          Vite + React
+        <div className="w-[120px] truncate text-green-500 border-1">
+          hover me
         </div>
       </Tooltip>
-      <Tooltip contents={"hihi"}>
-        <h1 className="inline-block text-green-500 mb-10">Vite + React</h1>
-      </Tooltip>
+      {/* <Tooltip
+        containerClassName="inline-block"
+        contents={"3245623"}
+        position="left-bottom"
+        backgroundColor=""
+      >
+        <h1 className="inline-block text-green-500">
+          Vite + Reactite + Reactite + React ite + React ite + Reactite + React
+        </h1>
+      </Tooltip> */}
       <h1 className="text-green-500">Vite + React</h1>
       <div className="card">
         <button
