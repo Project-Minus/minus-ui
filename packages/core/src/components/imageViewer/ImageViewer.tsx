@@ -96,7 +96,7 @@ export function ImageViewer({
   };
 
   const containerClass = cn(
-    "fixed z-101 top-0 left-0 w-screen h-screen flex flex-col justify-center items-center bg-black/50 text-white will-change-transform animate-viewerScaleUp",
+    "fixed z-[101] top-0 left-0 w-[100vw] h-[100vh] flex flex-col justify-center items-center bg-black/50 text-white will-change-transform animate-viewerScaleUp",
     containerClassName,
   );
   const viewerClass = cn("relative w-[800px] h-[650px]", viewerClassName);

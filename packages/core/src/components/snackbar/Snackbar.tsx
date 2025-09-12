@@ -103,7 +103,7 @@ export function Snackbar(props: SnackbarType) {
   }, []);
 
   const snackbarClass = cn(
-    "fixed pt-1 pb-2 px-3 flex items-center justify-center min-w-[150px] max-w-[500px] bg-inherit shadow-2xl text-inherit break-all",
+    "fixed z-[100] pt-1 pb-2 px-3 flex items-center justify-center min-w-[150px] max-w-[500px] bg-inherit shadow-2xl text-inherit break-all",
     snackbarTypeClassName,
     autoCloseClassName,
     snackbarPositionClassName,
@@ -114,7 +114,7 @@ export function Snackbar(props: SnackbarType) {
   return createPortal(
     <div
       ref={snackbarRef}
-      className={`${snackbarClass}`}
+      className={snackbarClass}
       style={
         {
           "--snackbar-vertical": snackbarHeight * 1.5 * index,

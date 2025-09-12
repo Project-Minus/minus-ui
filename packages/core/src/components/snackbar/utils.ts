@@ -12,8 +12,8 @@ export const convertCloseTime = (autoCloseTime: string) => {
 };
 
 export const getSnacbarPositionClassName = (position: SnackbarPositionType) => {
-  const top = `top-[calc(60px+1px*var(--snackbar-vertical)))]`;
-  const bottom = `bottom-[calc(60px+1px*var(--snackbar-vertical)))]`;
+  const top = `top-[calc(60px_+_1px_*_var(--snackbar-vertical)))]`;
+  const bottom = `bottom-[calc(60px_+_1px_*_var(--snackbar-vertical)))]`;
   switch (position) {
     case "top":
       return `${top} left-[50%] translate-y-[-50%] transition-[top] animate-showSnackbarOnTop`;
