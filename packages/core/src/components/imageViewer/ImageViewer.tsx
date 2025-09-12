@@ -15,33 +15,37 @@ type Axis = "X" | "Y" | "Z";
 const IMAGE_ICONS_STYLE = "cursor-pointer";
 
 /**
- * 이미지 클릭 시 확대해서 볼 수 있는 이미지 뷰어
+ * 이미지 클릭 시 확대해서 볼 수 있는 **이미지 뷰어**를 엽니다.
  *
- * ImageViewer.open({ url : '이미지 주소', ...}) 형식으로 사용
- * @param url - 이미지 주소 (required)
- * @param onMount - component mount 시 작동 함수 (optional)
- * @param onUnMount - component unmount 시 작동 함수 (optional)
- * @param isShowPanel - 패널 표출여부 (optional)
- * @param containerClassName - 가장 바깥 영역 class (optional)
- * @param viewerClassName - viewer class (optional)
- * @param imageClassName - image 감싼 div class (optional)
- * @param panelClassName - 패널 class (optional)
- * @param icons - 패널 아이콘들 (optional) {
- * 
-     flipUp
-
-     flipDown
-
-     rotateLeft
-
-     rotateRight
-     
-     zoomIn
-
-     zoomOut
-
-   };
- * @returns
+ * 사용법: `ImageViewer.open({ url: '이미지 주소', ... })`
+ * - 뒤집기/회전/확대·축소용 패널(아이콘 교체 가능)
+ * - 마운트/언마운트 훅(onMount / onUnMount)
+ * - 클래스 훅으로 스타일 커스터마이징
+ *
+ * @example
+ * // 기본 사용
+ * ImageViewer.open({ url: "/images/sample.jpg" });
+ *
+ * @param {Object} options - 뷰어 옵션
+ * @param {string} options.url - 이미지 주소 **(required)**
+ * @param {() => void} [options.onMount] - 컴포넌트 마운트 시 호출
+ * @param {() => void} [options.onUnMount] - 컴포넌트 언마운트 시 호출
+ * @param {boolean} [options.isShowPanel] - 제어 패널 표출 여부
+ * @param {string} [options.containerClassName] - 가장 바깥 컨테이너 클래스
+ * @param {string} [options.viewerClassName] - 뷰어 래퍼(오버레이) 클래스
+ * @param {string} [options.imageClassName] - 이미지를 감싸는 요소 클래스
+ * @param {string} [options.panelClassName] - 패널 컨테이너 클래스
+ * @param {Partial<{
+ *   flipUp: React.ReactNode;
+ *   flipDown: React.ReactNode;
+ *   rotateLeft: React.ReactNode;
+ *   rotateRight: React.ReactNode;
+ *   zoomIn: React.ReactNode;
+ *   zoomOut: React.ReactNode;
+ * }>} [options.icons]
+ *   패널 아이콘 교체(지정하지 않은 항목은 기본 아이콘 사용)
+ *
+ * @returns {JSX.Element}
  */
 export function ImageViewer({
   url,
