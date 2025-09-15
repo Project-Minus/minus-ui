@@ -104,12 +104,6 @@ export function Tooltip(props: TooltipPropsType) {
     setIsTextOverflow(false);
   };
 
-  useEffect(() => {
-    setTimeout(() => {
-      observeBubbleBox();
-    }, 0);
-  }, [observeBubbleBox, isTextOverflow]);
-
   return (
     <div
       ref={bubbleBoxRef}

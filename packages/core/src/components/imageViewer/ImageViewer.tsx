@@ -15,14 +15,13 @@ type Axis = "X" | "Y" | "Z";
 /**
  * 이미지 클릭 시 확대해서 볼 수 있는 **이미지 뷰어**를 엽니다.
  *
- * 사용법: `ImageViewer.open({ url: '이미지 주소', ... })`
  * - 뒤집기/회전/확대·축소용 패널(아이콘 교체 가능)
  * - 마운트/언마운트 훅(onMount / onUnMount)
  * - 클래스 훅으로 스타일 커스터마이징
  *
  * @example
  * // 기본 사용
- * ImageViewer.open({ url: "/images/sample.jpg" });
+ * ImageViewer.show({ url: "/images/sample.jpg" });
  *
  * @param {Object} options - 뷰어 옵션
  * @param {string} options.url - 이미지 주소 **(required)**
@@ -480,7 +479,7 @@ const closeViewer = () => {
   }
 };
 
-ImageViewer.open = (config: ImageViewerConfig) => {
+ImageViewer.show = (config: ImageViewerConfig) => {
   const { url, ...rest } = config;
   const imageRoot = getImageViewerRoot();
 
