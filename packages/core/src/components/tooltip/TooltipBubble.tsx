@@ -47,7 +47,6 @@ export default function TooltipBubble(props: Props) {
     tailClassName,
     "minus-ui-tooltip-content-default",
     draggableClassName,
-    "absolute z-10",
   );
 
   const currentPositionStyle = positionStyle
