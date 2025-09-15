@@ -1,8 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import { Snackbar } from "../packages/core/src/components/snackbar/Snackbar";
-import { ImageViewer } from "../packages/core/src/components/imageViewer/ImageViewer";
+// import { Snackbar } from "../packages/core/src/components/snackbar/Snackbar";
+// import { ImageViewer } from "../packages/core/src/components/imageViewer/ImageViewer";
 import { BiX } from "react-icons/bi";
-import { Tooltip } from "./../packages/core/src/components/tooltip/Tooltip";
+import { ImageViewer, Snackbar, Tooltip } from "@minus-ui/core";
+// import { Tooltip } from "./../packages/core/src/components/tooltip/Tooltip";
 export default function RootPage() {
   const navigate = useNavigate();
   return (

@@ -23,6 +23,16 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "require": "./dist/index.umd.cjs"
+    },
+    "./plugin":{
+      "types": "./dist/css.d.ts",
+      "import": "./dist/plugin.css",
+      "default": "./dist/plugin.css"
+    },
+    "./plugin.css":{
+      "types": "./dist/css.d.ts",
+      "import": "./dist/plugin.css",
+      "default": "./dist/plugin.css"
     }
   },
   "files": [
