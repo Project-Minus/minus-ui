@@ -42,10 +42,10 @@ export default function TooltipBubble(props: Props) {
   const draggableClassName = getDraggableClassName(isDraggable, position);
   const tailClassName = getTailClassName(isTail, position);
   const bubbleClass = cn(
-    "px-2 pt-0.5 pb-1 rounded-sm transition-[opacity] duration-150 whitespace-nowrap w-max",
+    "minus-ui-tooltip-content",
     contentClassName,
     tailClassName,
-    "opacity-0 select-none pointer-events-none",
+    "minus-ui-tooltip-content-default",
     draggableClassName,
     "absolute z-10",
   );

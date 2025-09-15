@@ -11,7 +11,12 @@ import { createRoot, Root } from "react-dom/client";
 
 import SnackbarWrapper from "./SnackbarWrapper";
 import { SnackbarConfigType, SnackbarType } from "../../types";
-import { convertCloseTime } from "./utils";
+import {
+  convertCloseTime,
+  getBlockClassNameWithPos,
+  getSnacbarPositionClassName,
+  getSnackbarTypeClassName,
+} from "./utils";
 import { cn } from "../utils";
 
 /**
@@ -49,7 +54,7 @@ export function Snackbar(props: SnackbarType) {
     index,
     type = "success",
     idNum,
-    className,
+    className = "",
     message,
     snackbarPosition = "top",
     icons = "",
@@ -68,19 +73,21 @@ export function Snackbar(props: SnackbarType) {
     return Math.max(2000, convertCloseTime(autoCloseTime));
   }, [autoCloseTime]);
 
-  const blockClassNameWithPos = () => {
-    const splitClassName = className?.split(" ");
-    return splitClassName
-      ?.filter((el) => !el.startsWith("top-") && !el.startsWith("bottom-"))
-      .join(" ");
-  };
+  const posBlockClassName = getBlockClassNameWithPos(className);
 
-  const autoCloseClassName = autoClose ? "" : "auto-close-off";
+  const snackbarTypeClassName = getSnackbarTypeClassName(type);
+
+  const snackbarPositionClassName =
+    getSnacbarPositionClassName(snackbarPosition);
+
+  const autoCloseClassName = autoClose
+    ? ""
+    : "minus-ui-snackbar-auto-close-off";
 
   const snackbarUnmountAnimateClassName = useMemo(() => {
     return snackbarPosition.includes("top")
-      ? "unmount-on-top"
-      : "unmount-on-bottom";
+      ? "minus-ui-snackbar-unmount-on-top"
+      : "minus-ui-snackbar-unmount-on-bottom";
   }, [snackbarPosition]);
 
   useEffect(() => {
@@ -105,11 +112,11 @@ export function Snackbar(props: SnackbarType) {
 
   const snackbarClass = cn(
     "minus-ui-snackbar",
-    type,
-    blockClassNameWithPos(),
+    snackbarTypeClassName,
+    posBlockClassName,
     autoCloseClassName,
     unmountClass,
-    snackbarPosition,
+    snackbarPositionClassName,
   );
 
   return createPortal(

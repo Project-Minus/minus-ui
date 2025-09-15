@@ -5,15 +5,15 @@ export const getDraggableClassName = (
   postion: TooltipPositionType,
 ) => {
   if (!isDraggable) {
-    return "group-hover:opacity-100";
+    return "minus-ui-tooltip-non-draggable";
   }
   if (postion.includes("top") || postion.includes("bottom")) {
-    return "group-hover:opacity-100 group-hover:select-text group-hover:pointer-events-auto before:absolute before:h-[calc(100%+30px)] before:content-[''] before:top-0 before:bottom-0 before:left-0 before:right-0 before:bg-transparent before:rounded-inherit before:z-[-1] before:translate-y-[-15px]";
+    return "minus-ui-tooltip-draggable minus-ui-tooltip-draggable-vertical";
   }
   if (postion === "left") {
-    return "group-hover:opacity-100 group-hover:select-text group-hover:pointer-events-auto before:absolute before:w-[calc(100%+20px)] before:content-[''] before:top-0 before:bottom-0 before:left-0 before:right-0 before:bg-transparent before:rounded-inherit before:z-[-1]";
+    return "minus-ui-tooltip-draggable minus-ui-tooltip-draggable-left";
   }
-  return "group-hover:opacity-100 group-hover:select-text group-hover:pointer-events-auto before:absolute before::w-[calc(100%+20px)] before:content-[''] before:top-0 before:bottom-0 before:left-0 before:right-0 before:bg-transparent before:rounded-inherit before:z-[-1] before:translate-x-[-20px]";
+  return "minus-ui-tooltip-draggable minus-ui-tooltip-draggable-right";
 };
 
 export const getTailClassName = (

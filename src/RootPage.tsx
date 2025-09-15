@@ -32,8 +32,9 @@ export default function RootPage() {
         containerClassName="inline-block"
         contentClassName="text-red-500 font-bold"
         contents={"It's tooltip!"}
-        position="right-top"
+        position="right"
         backgroundColor="white"
+        isDraggable
       >
         <div className="w-[120px] truncate text-green-500 border-1">
           hover me
@@ -55,11 +56,10 @@ export default function RootPage() {
           onClick={async () => {
             Snackbar.show({
               message: "hi! This is Minus-Snackbar!",
-              type: "error",
-              autoClose: true,
-              snackbarPosition: "bottom",
+              type: "success",
+              autoClose: false,
+              snackbarPosition: "right-bottom",
               maxCount: 10,
-              className: "bg-white text-green-600 text-2xl font-bold",
             });
           }}
         >

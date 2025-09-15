@@ -63,7 +63,7 @@ export function Tooltip(props: TooltipPropsType) {
   const [isTextOverflow, setIsTextOverflow] =
     useState<boolean>(!isCheckOverflow);
 
-  const containerClass = cn(containerClassName, "group relative");
+  const containerClass = cn(containerClassName, "minus-ui-tooltip-container");
 
   const observeBubbleBox = useCallback(() => {
     if (!bubbleBoxRef.current) {
