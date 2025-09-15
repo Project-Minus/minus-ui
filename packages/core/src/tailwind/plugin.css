@@ -1,19 +1,5 @@
 @import "tailwindcss";
 
-@layer utilities {
-  .animate-showSnackbarOnTop {
-    animation: showSnackbarOnTop 0.5s forwards;
-  }
-  .animate-showSnackbarOnBottom {
-    animation: showSnackbarOnBottom 0.5s forwards;
-  }
-  .animate-hideSnackbarOnTop {
-    animation: hideSnackbarOnTop 0.5s forwards;
-  }
-  .animate-hideSnackbarOnBottom {
-    animation: hideSnackbarOnBottom 0.5s forwards;
-  }
-}
 @layer components {
   /*snackbar*/
   .minus-ui-snackbar {
@@ -253,7 +239,7 @@
     width: calc(100% + 30px);
     height: calc(100% + 30px);
   }
-  .minus-ui-tooltip-container-top::after {
+  .minus-ui-tooltip-content-top::after {
     content: "";
     position: absolute;
     left: 50%;
@@ -264,7 +250,7 @@
     transform: translateX(-50%);
   }
 
-  .minus-ui-tooltip-container-bottom::after {
+  .minus-ui-tooltip-content-bottom::after {
     content: "";
     position: absolute;
     left: 50%;
@@ -275,7 +261,7 @@
     transform: translateX(-50%);
   }
 
-  .minus-ui-tooltip-container-left::after {
+  .minus-ui-tooltip-content-left::after {
     content: "";
     position: absolute;
     right: -6px;
@@ -286,7 +272,7 @@
     transform: translateY(-50%);
   }
 
-  .minus-ui-tooltip-container-right::after {
+  .minus-ui-tooltip-content-right::after {
     content: "";
     position: absolute;
     left: -6px;
@@ -297,7 +283,7 @@
     transform: translateY(-50%);
   }
 
-  .minus-ui-tooltip-container-left-top::after {
+  .minus-ui-tooltip-content-left-top::after {
     content: "";
     position: absolute;
     right: 10px;
@@ -308,7 +294,7 @@
     transform: translateY(-50%);
   }
 
-  .minus-ui-tooltip-container-right-top::after {
+  .minus-ui-tooltip-content-right-top::after {
     content: "";
     position: absolute;
     left: 10px;
@@ -319,7 +305,7 @@
     transform: translateY(-50%);
   }
 
-  .minus-ui-tooltip-container-left-bottom::after {
+  .minus-ui-tooltip-content-left-bottom::after {
     content: "";
     position: absolute;
     right: 10px;
@@ -330,7 +316,7 @@
     transform: translateY(-50%);
   }
 
-  .minus-ui-tooltip-container-right-bottom::after {
+  .minus-ui-tooltip-content-right-bottom::after {
     content: "";
     position: absolute;
     left: 10px;

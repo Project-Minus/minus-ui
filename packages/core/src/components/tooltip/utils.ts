@@ -25,23 +25,23 @@ export const getTailClassName = (
   }
   switch (position) {
     case "top":
-      return `minus-ui-tooltip-container-top`;
+      return `minus-ui-tooltip-content-top`;
     case "bottom":
-      return `minus-ui-tooltip-container-bottom`;
+      return `minus-ui-tooltip-content-bottom`;
     case "left":
-      return `minus-ui-tooltip-container-left`;
+      return `minus-ui-tooltip-content-left`;
     case "right":
-      return `minus-ui-tooltip-container-right`;
+      return `minus-ui-tooltip-content-right`;
     case "left-top":
-      return `minus-ui-tooltip-container-left-top`;
+      return `minus-ui-tooltip-content-left-top`;
     case "right-top":
-      return `minus-ui-tooltip-container-right-top`;
+      return `minus-ui-tooltip-content-right-top`;
     case "left-bottom":
-      return `minus-ui-tooltip-container-left-bottom`;
+      return `minus-ui-tooltip-content-left-bottom`;
     case "right-bottom":
-      return `minus-ui-tooltip-container-right-bottom`;
+      return `minus-ui-tooltip-content-right-bottom`;
     default:
-      return `minus-ui-tooltip-container-top`;
+      return `minus-ui-tooltip-content-top`;
   }
 };
 
