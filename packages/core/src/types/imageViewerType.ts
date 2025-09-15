@@ -11,8 +11,8 @@ export interface ImageViewerConfig {
   imageClassName?: string;
   panelClassName?: string;
   icons?: {
-    flipUp: ReactNode;
-    flipDown: ReactNode;
+    flipVertical: ReactNode;
+    flipHorizontal: ReactNode;
     rotateLeft: ReactNode;
     rotateRight: ReactNode;
     zoomIn: ReactNode;

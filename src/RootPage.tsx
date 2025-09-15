@@ -17,8 +17,8 @@ export default function RootPage() {
             ImageViewer.open({
               url: "/vite.svg",
               icons: {
-                flipUp: <BiX size={30} />,
-                flipDown: <BiX />,
+                flipVertical: <BiX size={30} />,
+                flipHorizontal: <BiX />,
                 rotateLeft: <BiX />,
                 rotateRight: <BiX />,
                 zoomIn: <BiX />,
@@ -54,16 +54,16 @@ export default function RootPage() {
         <button
           onClick={async () => {
             Snackbar.show({
-              message:
-                "hi! This is Minus-Snackbar! hi! This is Minus-Snackbar!",
-              type: "info",
-              autoClose: false,
-              snackbarPosition: "left-bottom",
+              message: "hi! This is Minus-Snackbar!",
+              type: "error",
+              autoClose: true,
+              snackbarPosition: "bottom",
               maxCount: 10,
+              className: "bg-white text-green-600 text-2xl font-bold",
             });
           }}
         >
-          count is
+          count is Snackbar!
         </button>
         <button
           onClick={() => {

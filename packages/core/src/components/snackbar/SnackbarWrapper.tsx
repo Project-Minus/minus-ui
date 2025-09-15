@@ -75,7 +75,7 @@ export default function SnackbarWrapper(props: Props) {
   }
 
   return (
-    <div>
+    <>
       {snackbars.map((snackbar, index) => {
         const {
           id,
@@ -99,6 +99,6 @@ export default function SnackbarWrapper(props: Props) {
           />
         );
       })}
-    </div>
+    </>
   );
 }

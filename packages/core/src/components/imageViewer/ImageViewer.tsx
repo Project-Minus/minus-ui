@@ -11,7 +11,6 @@ interface Props extends ImageViewerConfig {
 }
 
 type Axis = "X" | "Y" | "Z";
-const IMAGE_ICONS_STYLE = "cursor-pointer";
 
 /**
  * 이미지 클릭 시 확대해서 볼 수 있는 **이미지 뷰어**를 엽니다.
@@ -35,8 +34,8 @@ const IMAGE_ICONS_STYLE = "cursor-pointer";
  * @param {string} [options.imageClassName] - 이미지를 감싸는 요소 클래스
  * @param {string} [options.panelClassName] - 패널 컨테이너 클래스
  * @param {Partial<{
- *   flipUp: React.ReactNode;
- *   flipDown: React.ReactNode;
+ *   flipVertical: React.ReactNode;
+ *   flipHorizontal: React.ReactNode;
  *   rotateLeft: React.ReactNode;
  *   rotateRight: React.ReactNode;
  *   zoomIn: React.ReactNode;
@@ -57,15 +56,22 @@ export function ImageViewer({
   viewerClassName,
   panelClassName,
   icons = {
-    flipUp: "filpUp",
-    flipDown: "flipDown",
+    flipVertical: "flipVertical",
+    flipHorizontal: "flipHorizontal",
     rotateLeft: "rotateLeft",
     rotateRight: "rotateRight",
     zoomIn: "zoomIn",
     zoomOut: "zoomOut",
   },
 }: Props) {
-  const { flipUp, flipDown, rotateLeft, rotateRight, zoomIn, zoomOut } = icons;
+  const {
+    flipVertical,
+    flipHorizontal,
+    rotateLeft,
+    rotateRight,
+    zoomIn,
+    zoomOut,
+  } = icons;
   const imageContentRef = useRef<HTMLDivElement>(null);
   const [zoomBlock, setZoomBlock] = useState<{
     zoomIn: boolean;
@@ -96,18 +102,12 @@ export function ImageViewer({
   };
 
   const containerClass = cn(
-    "fixed z-[101] top-0 left-0 w-[100vw] h-[100vh] flex flex-col justify-center items-center bg-black/50 text-white will-change-transform animate-viewerScaleUp",
+    "minus-ui-image-viewer-container",
     containerClassName,
   );
-  const viewerClass = cn("relative w-[800px] h-[650px]", viewerClassName);
-  const imageClass = cn(
-    "relative flex justify-center items-center w-full h-full backface-visible transform-3d image-viewer-transition",
-    imageClassName,
-  );
-  const panelClass = cn(
-    "relative flex justify-between items-center gap-4 mt-12.5 p-5 bg-[rgba(15,15,15,0.7)] text-white rounded-2xl",
-    panelClassName,
-  );
+  const viewerClass = cn("minus-ui-image-viewer-viewer", viewerClassName);
+  const imageClass = cn("minus-ui-image-viewer-image", imageClassName);
+  const panelClass = cn("minus-ui-image-viewer-panel", panelClassName);
 
   const handleImageScale = (
     type: "flip" | "scale",
@@ -327,12 +327,9 @@ export function ImageViewer({
       style={{ cursor: isMouseHold ? "grabbing" : "default" }}
     >
       <div className={viewerClass}>
-        <div
-          className="absolute top-0 right-0 inline-block z-100 py-2 px-2 cursor-pointer"
-          onClick={closeViewer}
-        >
-          <div className="relative w-[24px] h-[2px] top-[2px] left-[0px] bg-white rotate-45"></div>
-          <div className="relative w-[24px] h-[2px] bg-white rotate-315"></div>
+        <div className="minus-ui-image-viewer-close" onClick={closeViewer}>
+          <div className="minus-ui-image-viewer-close-left"></div>
+          <div className="minus-ui-image-viewer-close-right"></div>
         </div>
         <div
           ref={imageContentRef}
@@ -394,25 +391,25 @@ export function ImageViewer({
           }}
         >
           <div
-            className={IMAGE_ICONS_STYLE}
+            className={"minus-ui-image-viewer-panel-icons"}
             onClick={() => {
               resetTranslate();
               handleImageScale("flip", "Y", 180);
             }}
           >
-            {flipUp}
+            {flipVertical}
           </div>
           <div
-            className={IMAGE_ICONS_STYLE}
+            className={"minus-ui-image-viewer-panel-icons"}
             onClick={() => {
               resetTranslate();
               handleImageScale("flip", "X", 180);
             }}
           >
-            {flipDown}
+            {flipHorizontal}
           </div>
           <div
-            className={IMAGE_ICONS_STYLE}
+            className={"minus-ui-image-viewer-panel-icons"}
             onClick={() => {
               resetTranslate();
               const newRotateCount = rotateLeftAndRight - 1;
@@ -422,7 +419,7 @@ export function ImageViewer({
             {rotateLeft}
           </div>
           <div
-            className={IMAGE_ICONS_STYLE}
+            className={"minus-ui-image-viewer-panel-icons"}
             onClick={() => {
               resetTranslate();
               const newRotateCount = rotateLeftAndRight + 1;
@@ -432,7 +429,7 @@ export function ImageViewer({
             {rotateRight}
           </div>
           <div
-            className={IMAGE_ICONS_STYLE}
+            className={"minus-ui-image-viewer-panel-icons"}
             onClick={() => {
               handleZoom("zoomIn");
             }}
@@ -441,7 +438,7 @@ export function ImageViewer({
             {zoomIn}
           </div>
           <div
-            className={IMAGE_ICONS_STYLE}
+            className={"minus-ui-image-viewer-panel-icons"}
             onClick={() => {
               handleZoom("zoomOut");
             }}

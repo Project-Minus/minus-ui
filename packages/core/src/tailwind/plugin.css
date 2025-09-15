@@ -15,16 +15,169 @@
   }
 }
 @layer components {
-  .custom_red {
-    color: red;
+  /*snackbar*/
+  .minus-ui-snackbar {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    padding-top: 2px;
+    padding-bottom: 4px;
+    padding-inline: 6px;
+    min-width: 150px;
+    max-width: 500px;
+    background-color: #262641;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+    color: #c1c5fd;
+    word-break: break-all;
+    border-radius: 5px;
+    transition:
+      bottom 0.2s,
+      top 0.2s;
   }
-  .custom_red.custom_bold {
-    color: red;
-    font-weight: bold;
+  .minus-ui-snackbar.success {
+    background-color: #274126;
+    color: #b1fdaa;
   }
+  .minus-ui-snackbar.error {
+    background-color: #4e3534;
+    color: #ffcdba;
+  }
+  .minus-ui-snackbar.warning {
+    background-color: #413c26;
+    color: #fdf3aa;
+  }
+  .minus-ui-snackbar.info {
+    background-color: #262641;
+    color: #c1c5fd;
+  }
+  .minus-ui-snackbar.auto-close-off {
+    cursor: pointer;
+  }
+  .minus-ui-snackbar.top {
+    top: calc(60px + 1px * var(--snackbar-vertical));
+    left: 50%;
+    transform: translateY(-50%);
+    animation: showSnackbarOnTop 0.5s forwards;
+  }
+  .minus-ui-snackbar.left-top {
+    top: calc(60px + 1px * var(--snackbar-vertical));
+    left: 10%;
+    translate: 50%;
+    animation: showSnackbarOnTop 0.5s forwards;
+  }
+  .minus-ui-snackbar.right-top {
+    top: calc(60px + 1px * var(--snackbar-vertical));
+    right: 10%;
+    translate: 50%;
+    animation: showSnackbarOnTop 0.5s forwards;
+  }
+  .minus-ui-snackbar.bottom {
+    bottom: calc(60px + 1px * var(--snackbar-vertical));
+    left: 50%;
+    transform: translateY(-50%);
+    animation: showSnackbarOnBottom 0.5s forwards;
+  }
+  .minus-ui-snackbar.left-bottom {
+    top: 0px;
+    bottom: calc(60px + 1px * var(--snackbar-vertical));
+    left: 10%;
+    translate: 50%;
+    animation: showSnackbarOnBottom 0.5s forwards;
+  }
+  .minus-ui-snackbar.right-bottom {
+    bottom: calc(60px + 1px * var(--snackbar-vertical));
+    right: 10%;
+    translate: 50%;
+    animation: showSnackbarOnBottom 0.5s forwards;
+  }
+  .minus-ui-snackbar.unmount-on-top {
+    animation: hideSnackbarOnTop 0.5s forwards;
+  }
+  .minus-ui-snackbar.unmount-on-bottom {
+    animation: hideSnackbarOnBottom 0.5s forwards;
+  }
+
+  /*imageViewer*/
+
+  .minus-ui-image-viewer-container {
+    position: fixed;
+    z-index: 101;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    color: rgba(255, 255, 255, 1);
+    animation: viewerScaleUp 0.15s forwards;
+  }
+  .minus-ui-image-viewer-viewer {
+    position: relative;
+    width: 800px;
+    height: 650px;
+  }
+  .minus-ui-image-viewer-image {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    backface-visibility: visible;
+    transform-style: preserve-3d;
+  }
+  .minus-ui-image-viewer-panel {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-top: 50px;
+    padding: 20px;
+    background-color: rgba(15, 15, 15, 0.7);
+    color: white;
+    border-radius: 40px;
+  }
+  .minus-ui-image-viewer-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: inline-block;
+    z-index: 100;
+    padding-block: 8px;
+    padding-inline: 8px;
+    cursor: pointer;
+  }
+  .minus-ui-image-viewer-close-left {
+    position: relative;
+    width: 24px;
+    height: 2px;
+    top: 2px;
+    left: 0px;
+    background-color: white;
+    rotate: 45deg;
+  }
+  .minus-ui-image-viewer-close-right {
+    position: relative;
+    width: 24px;
+    height: 2px;
+    background-color: white;
+    rotate: 315deg;
+  }
+  .minus-ui-image-viewer-panel-icons {
+    cursor: pointer;
+  }
+
+  /*tooltip*/
 }
 
 @layer base {
+  /*snackbar*/
   @keyframes showSnackbarOnTop {
     0% {
       opacity: 0;
@@ -63,6 +216,16 @@
     100% {
       opacity: 0;
       transform: translate(-50%, 0);
+    }
+  }
+
+  /*imageViewer*/
+  @keyframes viewerScaleUp {
+    0% {
+      transform: scale(0.6);
+    }
+    100% {
+      transform: scale(1);
     }
   }
 }

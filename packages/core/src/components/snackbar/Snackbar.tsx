@@ -11,11 +11,7 @@ import { createRoot, Root } from "react-dom/client";
 
 import SnackbarWrapper from "./SnackbarWrapper";
 import { SnackbarConfigType, SnackbarType } from "../../types";
-import {
-  convertCloseTime,
-  getSnacbarPositionClassName,
-  getSnackbarTypeClassName,
-} from "./utils";
+import { convertCloseTime } from "./utils";
 import { cn } from "../utils";
 
 /**
@@ -71,16 +67,21 @@ export function Snackbar(props: SnackbarType) {
     //최소값 1000ms
     return Math.max(2000, convertCloseTime(autoCloseTime));
   }, [autoCloseTime]);
-  const autoCloseClassName = autoClose ? "" : "cursor-pointer";
+
+  const blockClassNameWithPos = () => {
+    const splitClassName = className?.split(" ");
+    return splitClassName
+      ?.filter((el) => !el.startsWith("top-") && !el.startsWith("bottom-"))
+      .join(" ");
+  };
+
+  const autoCloseClassName = autoClose ? "" : "auto-close-off";
 
   const snackbarUnmountAnimateClassName = useMemo(() => {
     return snackbarPosition.includes("top")
-      ? "animate-hideSnackbarOnTop"
-      : "animate-hideSnackbarOnBottom";
+      ? "unmount-on-top"
+      : "unmount-on-bottom";
   }, [snackbarPosition]);
-  const snackbarPositionClassName =
-    getSnacbarPositionClassName(snackbarPosition);
-  const snackbarTypeClassName = getSnackbarTypeClassName(type);
 
   useEffect(() => {
     if (!autoClose) {
@@ -103,12 +104,12 @@ export function Snackbar(props: SnackbarType) {
   }, []);
 
   const snackbarClass = cn(
-    "fixed z-[100] pt-1 pb-2 px-3 flex items-center justify-center min-w-[150px] max-w-[500px] bg-inherit shadow-2xl text-inherit break-all",
-    snackbarTypeClassName,
+    "minus-ui-snackbar",
+    type,
+    blockClassNameWithPos(),
     autoCloseClassName,
-    snackbarPositionClassName,
     unmountClass,
-    className,
+    snackbarPosition,
   );
 
   return createPortal(
@@ -117,8 +118,7 @@ export function Snackbar(props: SnackbarType) {
       className={snackbarClass}
       style={
         {
-          "--snackbar-vertical": snackbarHeight * 1.5 * index,
-          "--snackbar-time": `${unmountMinTime / 2}ms`,
+          "--snackbar-vertical": snackbarHeight * index + index * 12,
           ...rest,
         } as CSSProperties
       }
@@ -133,7 +133,7 @@ export function Snackbar(props: SnackbarType) {
       }}
     >
       {!!icons && icons}
-      <span className="transition-[top] custom_red custom_bold">{message}</span>
+      <span>{message}</span>
     </div>,
     document.getElementById("snackbar-root") as HTMLElement,
   );
