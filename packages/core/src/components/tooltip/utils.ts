@@ -59,11 +59,13 @@ export const getCalcBubblePosition = (
   parentHeight: number,
   childWidth: number,
   childHeight: number,
+  isTail?: boolean,
 ) => {
   //위치 보정치
   const HORIZONTAL_CORRECTION = 14;
   const VERTICAL_CORRECTION = 12;
   const MULTIPLE_HORIZONTAL_CORRECTION = 20;
+  const hasTailCorrection = isTail ? 0 : 4;
   if (!parentWidth || !parentHeight || !childWidth || !childHeight) {
     return {};
   }
@@ -71,47 +73,47 @@ export const getCalcBubblePosition = (
     switch (position) {
       case "top":
         return {
-          bottom: parentHeight + VERTICAL_CORRECTION,
+          bottom: parentHeight + VERTICAL_CORRECTION - hasTailCorrection,
           left: parentWidth / 2 - childWidth / 2,
         };
       case "bottom":
         return {
-          top: parentHeight + VERTICAL_CORRECTION,
+          top: parentHeight + VERTICAL_CORRECTION - hasTailCorrection,
           left: parentWidth / 2 - childWidth / 2,
         };
       case "left":
         return {
           top: parentHeight / 2 - childHeight / 2,
-          right: parentWidth + HORIZONTAL_CORRECTION,
+          right: parentWidth + HORIZONTAL_CORRECTION - hasTailCorrection,
         };
       case "right":
         return {
           top: parentHeight / 2 - childHeight / 2,
-          left: parentWidth + HORIZONTAL_CORRECTION,
+          left: parentWidth + HORIZONTAL_CORRECTION - hasTailCorrection,
         };
       case "left-top":
         return {
-          bottom: parentHeight + VERTICAL_CORRECTION,
+          bottom: parentHeight + VERTICAL_CORRECTION - hasTailCorrection,
           right: parentWidth - parentWidth / 5 - MULTIPLE_HORIZONTAL_CORRECTION,
         };
       case "right-top":
         return {
-          bottom: parentHeight + VERTICAL_CORRECTION,
+          bottom: parentHeight + VERTICAL_CORRECTION - hasTailCorrection,
           left: parentWidth - parentWidth / 5 - MULTIPLE_HORIZONTAL_CORRECTION,
         };
       case "left-bottom":
         return {
-          top: parentHeight + VERTICAL_CORRECTION,
+          top: parentHeight + VERTICAL_CORRECTION - hasTailCorrection,
           right: parentWidth - parentWidth / 5 - MULTIPLE_HORIZONTAL_CORRECTION,
         };
       case "right-bottom":
         return {
-          top: parentHeight + VERTICAL_CORRECTION,
+          top: parentHeight + VERTICAL_CORRECTION - hasTailCorrection,
           left: parentWidth - parentWidth / 5 - MULTIPLE_HORIZONTAL_CORRECTION,
         };
       default:
         return {
-          bottom: parentHeight + VERTICAL_CORRECTION,
+          bottom: parentHeight + VERTICAL_CORRECTION - hasTailCorrection,
           left: parentWidth / 2 - childWidth / 2,
         };
     }

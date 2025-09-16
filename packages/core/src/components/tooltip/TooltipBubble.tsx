@@ -70,9 +70,10 @@ export default function TooltipBubble(props: Props) {
         parentHeight,
         childWidth,
         childHeight,
+        isTail,
       ),
     );
-  }, [position, parentDimension, childWidth, childHeight]);
+  }, [position, parentDimension, childWidth, childHeight, isTail]);
 
   return (
     <div

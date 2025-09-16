@@ -33,10 +33,10 @@ export default function RootPage() {
         containerClassName="inline-block z-[10000]"
         contentClassName="text-red-500 font-bold"
         contents={"It's tooltip!"}
-        position="bottom"
+        position="left-top"
         backgroundColor="white"
         isDraggable
-        isTail={false}
+        // isTail={false}
       >
         <div className="w-[70px] truncate text-green-500 border-1">
           hover me
