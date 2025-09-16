@@ -1,7 +1,10 @@
 # minus-ui
 
 **minus-ui**는 모던한 UI 개발을 위한 라이브러리 입니다!
+
 최근 tailwind 지원으로 새롭게 변경되어서 더 편하게 사용하실 수 있습니다!
+
+[core 보러가기](https://github.com/Project-Minus/minus-ui/tree/develop/packages/core)
 
 ## 📁 directory 구조
 ```
