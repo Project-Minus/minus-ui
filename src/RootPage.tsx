@@ -2,8 +2,8 @@ import { useNavigate } from "react-router-dom";
 // import { Snackbar } from "../packages/core/src/components/snackbar/Snackbar";
 // import { ImageViewer } from "../packages/core/src/components/imageViewer/ImageViewer";
 import { BiX } from "react-icons/bi";
-import { ImageViewer, Snackbar, Tooltip } from "@minus-ui/core";
-// import { Tooltip } from "./../packages/core/src/components/tooltip/Tooltip";
+import { ImageViewer, Snackbar } from "@minus-ui/core";
+import { Tooltip } from "./../packages/core/src/components/tooltip/Tooltip";
 export default function RootPage() {
   const navigate = useNavigate();
   return (
@@ -15,7 +15,7 @@ export default function RootPage() {
           className="logo react"
           alt="React logo"
           onClick={() => {
-            ImageViewer.open({
+            ImageViewer.show({
               url: "/vite.svg",
               icons: {
                 flipVertical: <BiX size={30} />,
@@ -30,14 +30,15 @@ export default function RootPage() {
         />
       </div>
       <Tooltip
-        containerClassName="inline-block"
+        containerClassName="inline-block z-[10000]"
         contentClassName="text-red-500 font-bold"
         contents={"It's tooltip!"}
-        position="right"
+        position="bottom"
         backgroundColor="white"
         isDraggable
+        isTail={false}
       >
-        <div className="w-[120px] truncate text-green-500 border-1">
+        <div className="w-[70px] truncate text-green-500 border-1">
           hover me
         </div>
       </Tooltip>
@@ -51,7 +52,7 @@ export default function RootPage() {
           Vite + Reactite + Reactite + React ite + React ite + Reactite + React
         </h1>
       </Tooltip> */}
-      <h1 className="text-green-500">Vite + React</h1>
+      <h1 className="text-green-500 relative z-[1000]">Vite + React</h1>
       <div className="card">
         <button
           onClick={async () => {
