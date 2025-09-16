@@ -70,9 +70,8 @@ export function Snackbar(props: SnackbarType) {
 
   const unmountMinTime = useMemo(() => {
     //최소값 1000ms
-    return Math.max(2000, convertCloseTime(autoCloseTime));
+    return Math.max(1000, convertCloseTime(autoCloseTime));
   }, [autoCloseTime]);
-
   const posBlockClassName = getBlockClassNameWithPos(className);
 
   const snackbarTypeClassName = getSnackbarTypeClassName(type);

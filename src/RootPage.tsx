@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
-// import { Snackbar } from "../packages/core/src/components/snackbar/Snackbar";
-// import { ImageViewer } from "../packages/core/src/components/imageViewer/ImageViewer";
+import { Snackbar } from "../packages/core/src/components/snackbar/Snackbar";
+import { ImageViewer } from "../packages/core/src/components/imageViewer/ImageViewer";
 import { BiX } from "react-icons/bi";
-import { ImageViewer, Snackbar } from "@minus-ui/core";
+// import { ImageViewer, Snackbar } from "@minus-ui/core";
 import { Tooltip } from "./../packages/core/src/components/tooltip/Tooltip";
 export default function RootPage() {
   const navigate = useNavigate();
@@ -36,7 +36,7 @@ export default function RootPage() {
         position="left-top"
         backgroundColor="white"
         isDraggable
-        // isTail={false}
+        isTail={false}
       >
         <div className="w-[70px] truncate text-green-500 border-1">
           hover me
@@ -59,8 +59,9 @@ export default function RootPage() {
             Snackbar.show({
               message: "hi! This is Minus-Snackbar!",
               type: "success",
-              autoClose: false,
-              snackbarPosition: "right-bottom",
+              autoClose: true,
+              autoCloseTime: "2s",
+              snackbarPosition: "top",
               maxCount: 10,
             });
           }}

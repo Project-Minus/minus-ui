@@ -35,8 +35,8 @@ export default function SnackbarWrapper(props: Props) {
   } = props;
   const [snackbars, setSnackbars] = useState<SnackbarItem[]>([]);
   const unmountMinTime = useMemo(() => {
-    //최소값 500ms
-    return Math.max(500, convertCloseTime(autoCloseTime));
+    //최소값 1000ms
+    return Math.max(1000, convertCloseTime(autoCloseTime));
   }, [autoCloseTime]);
 
   const manualClose = (idNum: number) => {
@@ -56,7 +56,7 @@ export default function SnackbarWrapper(props: Props) {
           return;
         }
         setSnackbars((prev) => prev.filter((snack) => snack.id !== idNum));
-      }, unmountMinTime * 1.3);
+      }, unmountMinTime + 250);
     };
     handleShowSnackbar();
   }, [autoClose, idNum, maxCount, type, icons, message, unmountMinTime]);

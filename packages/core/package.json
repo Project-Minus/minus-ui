@@ -1,6 +1,6 @@
 {
   "name": "@minus-ui/core",
-  "version": "0.9.6",
+  "version": "0.9.7",
   "type": "module",
   "description": "awesome minus-ui toolkit with tailwind plugin",
   "main": "dist/index.js",
