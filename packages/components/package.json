@@ -1,6 +1,6 @@
 {
   "name": "@minus-ui/components",
-  "version": "0.1.7",
+  "version": "0.2.1",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
