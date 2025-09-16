@@ -53,17 +53,26 @@ packages/
 
 ## 🚀 사용 방법
 
-### 1️⃣ **컴포넌트, 스타일, 타입 한 번에 사용하기**
+### 1️⃣ **Tooltip 사용 예제**
 
 ```tsx
-import { Snackbar, Tooltip } from "@minus-ui/core";
-import "@minus-ui/core/tooltip.css";
+import { Tooltip } from "@minus-ui/core";
 
 function App() {
   return (
-    <>
-      <Tooltip contents={<button>Hover me</button>} bubbleContents="Tooltip text" position="bottom" />
-    </>
+      <Tooltip
+        containerClassName="inline-block"
+        contentClassName="text-red-500 font-bold"
+        contents={"It's tooltip!"}
+        position="left-top"
+        backgroundColor="white"
+        isDraggable
+        isTail={false}
+      >
+        <div className="w-[70px] truncate text-green-500 border-1">
+          hover me
+        </div>
+      </Tooltip>
   );
 }
 ```
@@ -73,11 +82,33 @@ function App() {
 ```tsx
 import { Snackbar } from "@minus-ui/core";
 
-Snackbar.show({
-  message: "Operation successful!",
-  autoClose: false,
-  snackbarPosition: "bottom",
-});
+  Snackbar.show({
+    message: "hi! This is Minus-Snackbar!",
+    type: "success",
+    autoClose: true,
+    autoCloseTime: "2s",
+    snackbarPosition: "top",
+    maxCount: 10,
+  });
+
+```
+
+### 2️⃣ **ImageViewer 사용 예제**
+
+```tsx
+import { ImageViewer } from "@minus-ui/core";
+
+  ImageViewer.show({
+    url: "/vite.svg",
+    icons: {
+      flipVertical: <Icon size={30} />,
+      flipHorizontal: <Icon />,
+      rotateLeft: <Icon />,
+      rotateRight: <Icon />,
+      zoomIn: <Icon />,
+      zoomOut: <Icon />,
+    },
+  });
 
 ```
 
