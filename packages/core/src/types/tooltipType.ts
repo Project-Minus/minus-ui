@@ -15,7 +15,6 @@ export interface TooltipPropsType extends PropsWithChildren {
   isTail?: boolean;
   isShowBubble?: boolean;
   isDraggable?: boolean;
-  isCheckOverflow?: boolean;
   backgroundColor?: string;
   containerClassName?: string;
   contentClassName?: string;

@@ -87,7 +87,7 @@ export default function TooltipBubble(props: Props) {
       }
       className={bubbleClass}
     >
-      {contents}
+      <div className="z-2 relative">{contents}</div>
     </div>
   );
 }

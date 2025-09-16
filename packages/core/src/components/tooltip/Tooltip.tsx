@@ -1,4 +1,4 @@
-import { MouseEvent, useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import TooltipBubble from "./TooltipBubble";
 import { TooltipPropsType } from "../../types";
 import { cn } from "../utils";
@@ -28,10 +28,7 @@ import { cn } from "../utils";
  * @param {boolean} [props.isShowBubble=true]
  *   강제 표시/비표시 플래그. `false`이면 hover되어도 렌더링하지 않습니다.
  * @param {boolean} [props.isDraggable=false]
- *   표시된 말풍선을 드래그로 이동 가능하게 할지 여부.
- * @param {boolean} [props.isCheckOverflow=false]
- *   `true`이면 트리거 콘텐츠가 영역을 넘칠 때(예: 말줄임)만 말풍선을 표시합니다.
- *   내부적으로 측정 요소의 scroll/client 크기를 비교합니다.
+ *   표시된 말풍선을 드래그가 가능하게 할지 여부.
  * @param {string} [props.backgroundColor="#333333"]
  *   말풍선 배경색. `#333`, `rgb(...)`, `oklch(...)`, 말풍선 꼬리 색 또한 이를 따라감.
  * @param {string} [props.containerClassName]
@@ -49,7 +46,6 @@ export function Tooltip(props: TooltipPropsType) {
     isTail = true,
     isShowBubble = true,
     isDraggable = false,
-    isCheckOverflow = false,
     backgroundColor = "#333333",
     containerClassName,
     contentClassName = "",
@@ -59,9 +55,6 @@ export function Tooltip(props: TooltipPropsType) {
     width: number;
     height: number;
   }>({ width: 0, height: 0 });
-
-  const [isTextOverflow, setIsTextOverflow] =
-    useState<boolean>(!isCheckOverflow);
 
   const containerClass = cn(containerClassName, "minus-ui-tooltip-container");
 
@@ -92,25 +85,9 @@ export function Tooltip(props: TooltipPropsType) {
     };
   }, [observeBubbleBox]);
 
-  const handleCheckOverflow = (e: MouseEvent<HTMLParagraphElement>) => {
-    const target = e.target as HTMLParagraphElement;
-    if (!isCheckOverflow) {
-      return;
-    }
-    if (target.scrollWidth > target.clientWidth) {
-      setIsTextOverflow(true);
-      return;
-    }
-    setIsTextOverflow(false);
-  };
-
   return (
-    <div
-      ref={bubbleBoxRef}
-      className={containerClass}
-      onMouseEnter={handleCheckOverflow}
-    >
-      {isShowBubble && isTextOverflow && (
+    <div ref={bubbleBoxRef} className={containerClass}>
+      {isShowBubble && (
         <TooltipBubble
           contents={contents}
           position={position}

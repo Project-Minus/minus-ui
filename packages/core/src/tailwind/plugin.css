@@ -182,10 +182,6 @@
     pointer-events: none;
   }
   .minus-ui-tooltip-container:hover
-    .minus-ui-tooltip-content.minus-ui-tooltip-non-draggable {
-    opacity: 100;
-  }
-  .minus-ui-tooltip-container:hover
     .minus-ui-tooltip-content.minus-ui-tooltip-draggable {
     opacity: 100;
     -webkit-user-select: text; /* Safari */
@@ -195,7 +191,15 @@
     pointer-events: all;
   }
   .minus-ui-tooltip-container:hover
-    .minus-ui-tooltip-content.minus-ui-tooltip-draggable.minus-ui-tooltip-draggable-vertical::before {
+    .minus-ui-tooltip-content.minus-ui-tooltip-non-draggable {
+    opacity: 100;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    -moz-user-select: none;
+    user-select: none; /* Standard syntax */
+    pointer-events: none;
+  }
+  .minus-ui-tooltip-content.minus-ui-tooltip-draggable.minus-ui-tooltip-draggable-vertical::before {
     content: "";
     position: absolute;
     top: 0;
@@ -204,13 +208,12 @@
     right: 0;
     background-color: transparent;
     border-radius: inherit;
-    z-index: -1;
+    z-index: 0;
     transform: translate(-15px, -15px);
     width: calc(100% + 30px);
     height: calc(100% + 30px);
   }
-  .minus-ui-tooltip-container:hover
-    .minus-ui-tooltip-content.minus-ui-tooltip-draggable.minus-ui-tooltip-draggable-left::before {
+  .minus-ui-tooltip-content.minus-ui-tooltip-draggable.minus-ui-tooltip-draggable-left::before {
     content: "";
     position: absolute;
     top: 0;
@@ -219,13 +222,12 @@
     right: 0;
     background-color: transparent;
     border-radius: inherit;
-    z-index: -1;
+    z-index: 0;
     transform: translate(-15px, -15px);
     width: calc(100% + 30px);
     height: calc(100% + 30px);
   }
-  .minus-ui-tooltip-container:hover
-    .minus-ui-tooltip-content.minus-ui-tooltip-draggable.minus-ui-tooltip-draggable-right::before {
+  .minus-ui-tooltip-content.minus-ui-tooltip-draggable.minus-ui-tooltip-draggable-right::before {
     content: "";
     position: absolute;
     top: 0;
@@ -234,7 +236,7 @@
     right: 0;
     background-color: transparent;
     border-radius: inherit;
-    z-index: -1;
+    z-index: 0;
     transform: translate(-15px, -15px);
     width: calc(100% + 30px);
     height: calc(100% + 30px);
