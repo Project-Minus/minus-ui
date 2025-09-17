@@ -1,6 +1,7 @@
 # @minus-ui/core
 
-`@minus-ui/core`가 새롭게 변경되었습니다.\
+`@minus-ui/core`가 새롭게 변경되었습니다.
+
 이 패키지를 사용하면 내부에 컴포넌트들을 쉽고 빠르게 사용하실 수 있습니다!
 
 ## 📥 설치
@@ -36,8 +37,10 @@ packages/
 
 - tailwind css 사용할 수 있도록 지원
 - 기본 스타일을 위한 plugin 지원
-- tailwind를 import 한 global.css에 tailwindcss 바로 밑에 plugin 적용 \
-해당 plugin을 적용하지 않으면 UI가 깨질 수 있습니다.\
+- tailwind를 import 한 global.css에 tailwindcss 바로 밑에 plugin 적용 
+
+해당 plugin을 적용하지 않으면 UI가 깨질 수 있습니다.
+
 그럴 경우 처음부터 직접 style을 입혀야 하기에 plugin 적용을 추천 드립니다.
 
 ```css
