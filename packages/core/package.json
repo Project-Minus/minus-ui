@@ -1,6 +1,6 @@
 {
   "name": "@minus-ui/core",
-  "version": "0.9.7",
+  "version": "0.9.9",
   "type": "module",
   "description": "awesome minus-ui toolkit with tailwind plugin",
   "main": "dist/index.js",
@@ -26,18 +26,16 @@
       "require": "./dist/index.umd.cjs"
     },
     "./plugin":{
-      "types": "./dist/css.d.ts",
-      "import": "./dist/plugin.css",
-      "default": "./dist/plugin.css"
+      "import": "./dist/index.css",
+      "default": "./dist/index.css"
     },
     "./plugin.css":{
-      "types": "./dist/css.d.ts",
-      "import": "./dist/plugin.css",
-      "default": "./dist/plugin.css"
+      "import": "./dist/index.css",
+      "default": "./dist/index.css"
     }
   },
   "files": [
-    "dist"
+    "dist","*.css"
   ],
   "scripts": {
     "build": "vite build"
